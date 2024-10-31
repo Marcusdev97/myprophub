@@ -1,0 +1,51 @@
+@use '../abstracts/variables' as vars;
+@use '../abstracts/functions' as fn;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; // 1rem = 10px
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+                 Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    overflow-x: hidden;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+input,
+textarea {
+    font: inherit;
+}

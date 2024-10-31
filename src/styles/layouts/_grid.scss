@@ -1,0 +1,38 @@
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mix;
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+
+  &--2 {
+    grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &--3 {
+    grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &--4 {
+    grid-template-columns: repeat(4, 1fr);
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
