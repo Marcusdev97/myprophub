@@ -1,0 +1,39 @@
+// src/styles/pages/_services.scss
+.services-page {
+    padding: var(--spacing-8) 0;
+    
+    &__header {
+      text-align: center;
+      margin-bottom: var(--spacing-12);
+    }
+  
+    &__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-4);
+    }
+  
+    &__subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-light);
+      max-width: 36rem;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  
+    &__content {
+      display: grid;
+      gap: var(--spacing-8);
+      grid-template-columns: 1fr;
+      margin-top: var(--spacing-12);
+      
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }

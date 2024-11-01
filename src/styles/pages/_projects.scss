@@ -1,25 +1,137 @@
-.projects {
-    &__header {
-      @apply text-center mb-12;
-  
-      &-title {
-        @apply text-4xl font-bold text-text mb-4;
-      }
-  
-      &-description {
-        @apply text-gray max-w-2xl mx-auto;
-      }
+// src/styles/pages/_projects.scss
+.projects-page {
+  padding: var(--spacing-8) 0;
+
+  &__header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+
+  &__title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-4);
+  }
+
+  &__subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-light);
+    max-width: 36rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  &__content {
+    margin-top: var(--spacing-8);
+  }
+
+  &__grid {
+    display: grid;
+    gap: var(--spacing-6);
+    grid-template-columns: 1fr;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
     }
-  
-    &__filters {
-      @apply bg-white rounded-lg shadow-sm border border-gray-100 p-6 mb-8;
-  
-      &-grid {
-        @apply grid grid-cols-1 md:grid-cols-3 gap-6;
-      }
-    }
-  
-    &__grid {
-      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+    
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
+
+  &__empty {
+    text-align: center;
+    padding: var(--spacing-12);
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    color: var(--color-text-light);
+  }
+}
+
+// 切换按钮样式
+.toggle-buttons {
+  margin-bottom: var(--spacing-6);
+
+  &__primary {
+    display: flex;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-4);
+  }
+
+  &__secondary {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+}
+
+.toggle-button {
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: 0.5rem;
+  font-weight: var(--font-weight-medium);
+  background-color: var(--color-gray-50);
+  color: var(--color-text);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 120px;
+  text-align: center;
+
+  &--active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  &:hover:not(&--active) {
+    background-color: var(--color-gray-100);
+  }
+
+  // 次要按钮样式
+  &--secondary {
+    background-color: var(--color-gray-50);
+
+    &.toggle-button--active {
+      background-color: var(--color-gray-200);
+      color: var(--color-text);
+    }
+
+    &:hover:not(.toggle-button--active) {
+      background-color: var(--color-gray-100);
+    }
+  }
+}
+
+// 筛选部分样式
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+
+  &__label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  &__select {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 0.5rem;
+    background-color: var(--color-white);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px var(--color-primary-light);
+    }
+
+    &:hover {
+      border-color: var(--color-primary);
+    }
+  }
+}

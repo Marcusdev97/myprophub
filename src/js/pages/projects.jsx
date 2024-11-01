@@ -1,7 +1,27 @@
+// src/js/pages/projects.jsx
 import React, { useState } from 'react';
 import PropertyCard from '../components/PropertyCard';
 import PropertyDetailsModal from '../components/PropertyDetailsModal';
 import { properties, filterProperties } from '../data/properties';
+
+const FilterSection = ({ label, value, onChange, options }) => (
+  <div className="filter-section">
+    <label className="filter-section__label">
+      {label}
+    </label>
+    <select
+      value={value}
+      onChange={onChange}
+      className="filter-section__select"
+    >
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </div>
+);
 
 const ProjectsPage = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -13,35 +33,7 @@ const ProjectsPage = () => {
     location: 'any',
   });
 
-  const filteredProperties = filterProperties(properties, {
-    listingType,
-    propertyCategory,
-    ...filters
-  });
-
-  // Filter section component
-  const FilterSection = ({ label, value, onChange, options }) => (
-    <div className="flex flex-col">
-      <label className="text-sm font-medium text-text mb-2">
-        {label}
-      </label>
-      <select
-        value={value}
-        onChange={onChange}
-        className="w-full px-4 py-2.5 border border-gray-light rounded-lg 
-                 focus:ring-2 focus:ring-primary-light focus:border-transparent
-                 bg-white text-text cursor-pointer hover:border-primary
-                 transition-colors duration-200"
-      >
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-
+  // 价格范围选项
   const priceRanges = listingType === 'rent' 
     ? [
         { value: 'any', label: 'Any Rental' },
@@ -59,6 +51,7 @@ const ProjectsPage = () => {
         { value: 'above-2m', label: 'Above RM 2,000,000' },
       ];
 
+  // 房产类型选项
   const propertyTypes = [
     { value: 'any', label: 'All Types' },
     { value: 'condo', label: 'Condominium' },
@@ -68,6 +61,7 @@ const ProjectsPage = () => {
     { value: 'bungalow', label: 'Bungalow' },
   ];
 
+  // 地区选项
   const locations = [
     { value: 'any', label: 'All Locations' },
     { value: 'kl', label: 'Kuala Lumpur' },
@@ -76,70 +70,66 @@ const ProjectsPage = () => {
     { value: 'johor', label: 'Johor' },
   ];
 
+  const filteredProperties = filterProperties(properties, {
+    listingType,
+    propertyCategory,
+    ...filters
+  });
+
   return (
-    <div className="content-container"> 
+    <div className="content-container">
       <div className="projects-page">
-      {/* Header */}
-      <div className="text-center mb-12">
-      <h1 className="text-4xl font-bold text-text mb-4">Property Listings</h1>
-      <p className="text-text-light max-w-2xl mx-auto">
-        Find your perfect property in Malaysia. Browse through our curated selection 
-          of properties for sale and rent.
-        </p>
-      </div>
-
-      {/* Main Actions */}
-      <div className="button-container">
-        <div className="button-group">
-          {/* Buy/Rent Toggle */}
-          <div className="button-group__wrapper button-group__wrapper--spaced">
-            <div className="button-group__toggle">
-              <button 
-                className={`button__action ${
-                  listingType === 'sale' ? 'button__action--primary' : 'button__action--secondary'
-                }`}
-                onClick={() => setListingType('sale')}
-              >
-                Buy Property
-              </button>
-              <button 
-                className={`button__action ${
-                  listingType === 'rent' ? 'button__action--primary' : 'button__action--secondary'
-                }`}
-                onClick={() => setListingType('rent')}
-              >
-                Rent Property
-              </button>
-            </div>
-          </div>
-
-          {/* New/Subsale Toggle */}
-          {listingType === 'sale' && (
-            <div className="button-group__wrapper">
-              <div className="button-group__toggle">
-                <button 
-                  className={`button__action button__action--secondary ${
-                    propertyCategory === 'new' ? 'active' : ''
-                  }`}
-                  onClick={() => setPropertyCategory('new')}
-                >
-                  New Projects
-                </button>
-                <button 
-                  className={`button__action button__action--secondary ${
-                    propertyCategory === 'subsale' ? 'active' : ''
-                  }`}
-                  onClick={() => setPropertyCategory('subsale')}
-                >
-                  Subsale
-                </button>
-              </div>
-            </div>
-          )}
+        <div className="projects-page__header">
+          <h1 className="projects-page__title">Property Listings</h1>
+          <p className="projects-page__subtitle">
+            Find your perfect property in Malaysia. Browse through our curated selection 
+            of properties for sale and rent.
+          </p>
         </div>
+
+        <div className="projects-page__filters">
+      {/* 修改切换按钮部分 */}
+      <div className="toggle-buttons">
+        {/* Buy/Rent 切换 */}
+        <div className="toggle-buttons__primary">
+          <button 
+            className={`toggle-button ${listingType === 'sale' ? 'toggle-button--active' : ''}`}
+            onClick={() => setListingType('sale')}
+          >
+            Buy Property
+          </button>
+          <button 
+            className={`toggle-button ${listingType === 'rent' ? 'toggle-button--active' : ''}`}
+            onClick={() => setListingType('rent')}
+          >
+            Rent Property
+          </button>
+        </div>
+
+        {/* New/Subsale 切换 */}
+        {listingType === 'sale' && (
+          <div className="toggle-buttons__secondary">
+            <button 
+              className={`toggle-button toggle-button--secondary ${
+                propertyCategory === 'new' ? 'toggle-button--active' : ''
+              }`}
+              onClick={() => setPropertyCategory('new')}
+            >
+              New Projects
+            </button>
+            <button 
+              className={`toggle-button toggle-button--secondary ${
+                propertyCategory === 'subsale' ? 'toggle-button--active' : ''
+              }`}
+              onClick={() => setPropertyCategory('subsale')}
+            >
+              Subsale
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Filters */}
+      {/* 保持原有的筛选部分 */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-light p-6 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <FilterSection
@@ -162,34 +152,33 @@ const ProjectsPage = () => {
           />
         </div>
       </div>
+    </div>
 
-      {/* Property Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProperties.length > 0 ? (
-          filteredProperties.map(property => (
-            <PropertyCard
-              key={property.id}
-              property={property}
-              onClick={() => setSelectedProperty(property)}
-            />
-          ))
-        ) : (
-          <div className="col-span-full text-center py-12">
-            <p className="text-text-light">
-              No properties found matching your criteria. Please try adjusting your filters.
-            </p>
-          </div>
-        )}
+        <div className="projects-page__content">
+          {filteredProperties.length > 0 ? (
+            <div className="projects-page__grid">
+              {filteredProperties.map(property => (
+                <PropertyCard
+                  key={property.id}
+                  property={property}
+                  onClick={() => setSelectedProperty(property)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="projects-page__empty">
+              <p>No properties found matching your criteria. Please try adjusting your filters.</p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Property Details Modal */}
       {selectedProperty && (
         <PropertyDetailsModal
           property={selectedProperty}
           onClose={() => setSelectedProperty(null)}
         />
       )}
-    </div>
     </div>
   );
 };
