@@ -1,31 +1,29 @@
+// main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import Navigation from './js/components/navigation.jsx';
-
-//Pages
-import ServicesPage from './js/pages/services.jsx';
-import Contact from './js/pages/contact.jsx';
-import ProjectsPage from './js/pages/projects.jsx';
+import Navigation from './js/components/navigation';
+import ServicesPage from './js/pages/services';
+import Contact from './js/pages/contact';
+import ProjectsPage from './js/pages/projects';
 import './index.css';
 import './styles/main.scss';
 
-
+// 将 Home 组件分离出来
 const Home = () => {
   return (
-    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-      <div className="px-4 py-6 sm:px-0">
-        <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center">
-          <p className="text-gray-500 text-xl">Welcome to MyPropHub!</p>
-        </div>
+    <div className="content-container">
+      <div className="home-content">
+        <p className="text-xl text-gray-600">Welcome to MyPropHub!</p>
       </div>
     </div>
   );
 };
 
+// 将 App 组件分离出来
 const App = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="page-container">
       <Navigation />
       <main>
         <Routes>
@@ -39,7 +37,9 @@ const App = () => {
   );
 };
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+// 使用这种方式渲染
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <HashRouter>
       <App />

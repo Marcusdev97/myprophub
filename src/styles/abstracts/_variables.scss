@@ -1,84 +1,110 @@
-@use 'sass:map';
-
-// Colors
-$colors: (
-  // Primary Colors
-  'primary': #2563eb,      // 明亮的蓝色
-  'primary-light': #60a5fa, // 浅蓝色
-  'primary-dark': #1d4ed8,  // 深蓝色
-
-  // Secondary Colors
-  'secondary': #64748b,    // 柔和的灰蓝色
-  'secondary-light': #94a3b8,
-  'secondary-dark': #475569,
-
-  // Neutral Colors
-  'text': #1f2937,
-  'text-light': #4b5563,
-  'light': #f8fafc,
-  'white': #ffffff,
-  'gray': #6b7280,
-  'gray-light': #e5e7eb,
-  'gray-dark': #374151,
-
-  // Accent Colors
-  'accent-green': #22c55e,  // 成功
-  'accent-yellow': #f59e0b, // 警告
-  'accent-red': #ef4444,    // 错误
-  'accent-blue': #3b82f6,   // 信息
-
-  // Background Colors
-  'bg-primary': #ffffff,
-  'bg-secondary': #f8fafc,
-  'bg-dark': #1f2937
-) !default;
-
-// Breakpoints
-$breakpoints: (
-  'sm': 640px,
-  'md': 768px,
-  'lg': 1024px,
-  'xl': 1280px
-) !default;
-
-// Font weights
-$font-weights: (
-  'regular': 400,
-  'medium': 500,
-  'semibold': 600,
-  'bold': 700
-) !default;
-
+// _variables.scss
 :root {
-  @each $name, $color in $colors {
-    --color-#{$name}: #{$color};
-  }
+  // Typography
+  --font-family-primary: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-secondary: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  // Font Sizes
+  --font-size-xs: 0.75rem;    // 12px
+  --font-size-sm: 0.875rem;   // 14px
+  --font-size-base: 1rem;     // 16px
+  --font-size-lg: 1.125rem;   // 18px
+  --font-size-xl: 1.25rem;    // 20px
+  --font-size-2xl: 1.5rem;    // 24px
+  --font-size-3xl: 1.875rem;  // 30px
+  --font-size-4xl: 2.25rem;   // 36px
 
-  @each $name, $weight in $font-weights {
-    --font-weight-#{$name}: #{$weight};
-  }
-
-  --color-primary: #2563eb;
-  --color-primary-light: #60a5fa;
-  --color-primary-dark: #1d4ed8;
-  
-  --color-secondary: #64748b;
-  --color-secondary-light: #94a3b8;
-  --color-secondary-dark: #475569;
-  
-  --color-text: #1f2937;
-  --color-text-light: #4b5563;
-  
-  --color-gray: #6b7280;
-  --color-gray-light: #e5e7eb;
-  --color-gray-dark: #374151;
-  
+  // Color Settings
   --color-white: #ffffff;
-  --color-black: #000000;
+  --color-primary: #2563eb;
+  --color-text: #1f2937;
+  --color-gray-light: #f3f4f6;
+  
+  // Line Heights
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  // Spacing
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;  // 4px
+  --spacing-2: 0.5rem;   // 8px
+  --spacing-3: 0.75rem;  // 12px
+  --spacing-4: 1rem;     // 16px
+  --spacing-5: 1.25rem;  // 20px
+  --spacing-6: 1.5rem;   // 24px
+  --spacing-8: 2rem;     // 32px
+  --spacing-10: 2.5rem;  // 40px
+  --spacing-12: 3rem;    // 48px
 
-  // Font weights
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  // Breakpoints (if needed)
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  
+  // Navigation Specific
+  --nav-height: 4rem;
+  --nav-padding-x: var(--spacing-4);
+  --nav-padding-y: var(--spacing-2);
+  --nav-font-size: var(--font-size-base);
+  --nav-logo-size: var(--font-size-xl);
+}
+
+// _typography.scss
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-6);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-4);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-4);
+}
+
+p {
+  margin-bottom: var(--spacing-4);
+}
+
+// _layout.scss
+.page-container {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+.content-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--spacing-6) var(--spacing-4);
+  
+  @media (min-width: 640px) {
+    padding: var(--spacing-8) var(--spacing-6);
+  }
+  
+  @media (min-width: 1024px) {
+    padding: var(--spacing-10) var(--spacing-8);
+  }
+}
+
+.section {
+  margin-bottom: var(--spacing-12);
 }

@@ -2,10 +2,7 @@
 import { Navigation } from './components/navigation';
 import { initializeAnimations } from './utils/animations';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize components
-    new Navigation();
-    
+document.addEventListener('DOMContentLoaded', () => {    
     // Initialize animations
     initializeAnimations();
     

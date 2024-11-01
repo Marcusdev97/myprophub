@@ -77,12 +77,13 @@ const ProjectsPage = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="content-container"> 
+      <div className="projects-page">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-text mb-4">Property Listings</h1>
-        <p className="text-text-light max-w-2xl mx-auto">
-          Find your perfect property in Malaysia. Browse through our curated selection 
+      <h1 className="text-4xl font-bold text-text mb-4">Property Listings</h1>
+      <p className="text-text-light max-w-2xl mx-auto">
+        Find your perfect property in Malaysia. Browse through our curated selection 
           of properties for sale and rent.
         </p>
       </div>
@@ -188,6 +189,7 @@ const ProjectsPage = () => {
           onClose={() => setSelectedProperty(null)}
         />
       )}
+    </div>
     </div>
   );
 };
