@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navigation from './js/components/navigation';
+import HomePage from './js/pages/home';
 import ServicesPage from './js/pages/services';
 import Contact from './js/pages/contact';
 import ProjectsPage from './js/pages/projects';
@@ -27,7 +28,7 @@ const App = () => {
       <Navigation />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contact" element={<Contact />} />

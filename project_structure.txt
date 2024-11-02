@@ -10,11 +10,9 @@
 │   ├── index.css
 │   ├── js/
 │   │   ├── components/
-│   │   │   ├── ContactPage.jsx
 │   │   │   ├── PropertyCard.jsx
 │   │   │   ├── PropertyDetailsModal.jsx
 │   │   │   ├── ServiceCard.jsx
-│   │   │   ├── modal.js*
 │   │   │   ├── navigation.jsx*
 │   │   │   └── slider.js*
 │   │   ├── data/
@@ -22,6 +20,7 @@
 │   │   ├── main.js*
 │   │   ├── pages/
 │   │   │   ├── contact.jsx
+│   │   │   ├── home.jsx
 │   │   │   ├── projects.jsx
 │   │   │   └── services.jsx
 │   │   ├── services/
@@ -49,20 +48,23 @@
 │       │   ├── _buttons.scss*
 │       │   ├── _cards.scss*
 │       │   ├── _index.scss
-│       │   └── _navigation.scss*
+│       │   ├── _navigation.scss*
+│       │   └── _service-card.scss
 │       ├── layouts/
 │       │   ├── _footer.scss*
 │       │   ├── _grid.scss*
 │       │   ├── _header.scss*
-│       │   └── _index.scss
+│       │   ├── _index.scss
+│       │   └── _layout.scss
 │       ├── main.scss*
 │       └── pages/
 │           ├── _contact.scss*
 │           ├── _home.scss*
 │           ├── _index.scss
+│           ├── _pages.scss
 │           ├── _projects.scss*
 │           └── _services.scss*
 ├── tailwind.config.js
 └── vite.config.js
 
-15 directories, 51 files
+15 directories, 53 files
