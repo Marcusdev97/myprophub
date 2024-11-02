@@ -87,11 +87,11 @@ const Navigation = () => {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div 
-          className="nav__mobile-overlay"
+          <div 
+          className={`nav__mobile-overlay ${isMenuOpen ? 'active' : ''}`}
           onClick={handleMobileMenuClick}
-        >
-          <div className="nav__mobile-menu" onClick={e => e.stopPropagation()}>
+          >
+            <div className="nav__mobile-menu" onClick={e => e.stopPropagation()}>
             {navLinks.map(({ path, label }) => (
               <Link
                 key={path}

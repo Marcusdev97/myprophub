@@ -116,14 +116,11 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    z-index: 40; // 添加 z-index
     
-    &--open {
+    &.active { // 添加 active 类
       opacity: 1;
       visibility: visible;
-    }
-
-    @media (min-width: 768px) {
-      display: none; // 在桌面端隐藏
     }
   }
 
@@ -136,8 +133,9 @@
     padding: var(--spacing-4);
     transform: translateY(-100%);
     transition: transform 0.3s ease;
+    z-index: 41; // 添加 z-index
     
-    .nav__mobile-overlay--open & {
+    .active & { // 使用 active 类
       transform: translateY(0);
     }
   }
