@@ -1,7 +1,7 @@
 // src/js/pages/projects.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
-import PropertyDetailsModal from '../components/PropertyDetailsModal';
 import { properties, filterProperties } from '../data/properties';
 
 const FilterSection = ({ label, value, onChange, options }) => (
@@ -24,7 +24,7 @@ const FilterSection = ({ label, value, onChange, options }) => (
 );
 
 const ProjectsPage = () => {
-  const [selectedProperty, setSelectedProperty] = useState(null);
+  const navigate = useNavigate();
   const [listingType, setListingType] = useState('sale');
   const [propertyCategory, setPropertyCategory] = useState('new');
   const [filters, setFilters] = useState({
@@ -50,6 +50,10 @@ const ProjectsPage = () => {
         { value: '1m-2m', label: 'RM 1,000,000 - RM 2,000,000' },
         { value: 'above-2m', label: 'Above RM 2,000,000' },
       ];
+  
+  const handlePropertyClick = (property) => {
+    navigate(`/properties/${property.id}`);
+  };
 
   // 房产类型选项
   const propertyTypes = [
@@ -88,71 +92,67 @@ const ProjectsPage = () => {
         </div>
 
         <div className="projects-page__filters">
-      {/* 修改切换按钮部分 */}
-      <div className="toggle-buttons">
-        {/* Buy/Rent 切换 */}
-        <div className="toggle-buttons__primary">
-          <button 
-            className={`toggle-button ${listingType === 'sale' ? 'toggle-button--active' : ''}`}
-            onClick={() => setListingType('sale')}
-          >
-            Buy Property
-          </button>
-          <button 
-            className={`toggle-button ${listingType === 'rent' ? 'toggle-button--active' : ''}`}
-            onClick={() => setListingType('rent')}
-          >
-            Rent Property
-          </button>
-        </div>
+          <div className="toggle-buttons">
+            <div className="toggle-buttons__primary">
+              <button 
+                className={`toggle-button ${listingType === 'sale' ? 'toggle-button--active' : ''}`}
+                onClick={() => setListingType('sale')}
+              >
+                Buy Property
+              </button>
+              <button 
+                className={`toggle-button ${listingType === 'rent' ? 'toggle-button--active' : ''}`}
+                onClick={() => setListingType('rent')}
+              >
+                Rent Property
+              </button>
+            </div>
 
-        {/* New/Subsale 切换 */}
-        {listingType === 'sale' && (
-          <div className="toggle-buttons__secondary">
-            <button 
-              className={`toggle-button toggle-button--secondary ${
-                propertyCategory === 'new' ? 'toggle-button--active' : ''
-              }`}
-              onClick={() => setPropertyCategory('new')}
-            >
-              New Projects
-            </button>
-            <button 
-              className={`toggle-button toggle-button--secondary ${
-                propertyCategory === 'subsale' ? 'toggle-button--active' : ''
-              }`}
-              onClick={() => setPropertyCategory('subsale')}
-            >
-              Subsale
-            </button>
+            {listingType === 'sale' && (
+              <div className="toggle-buttons__secondary">
+                <button 
+                  className={`toggle-button toggle-button--secondary ${
+                    propertyCategory === 'new' ? 'toggle-button--active' : ''
+                  }`}
+                  onClick={() => setPropertyCategory('new')}
+                >
+                  New Projects
+                </button>
+                <button 
+                  className={`toggle-button toggle-button--secondary ${
+                    propertyCategory === 'subsale' ? 'toggle-button--active' : ''
+                  }`}
+                  onClick={() => setPropertyCategory('subsale')}
+                >
+                  Subsale
+                </button>
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      {/* 保持原有的筛选部分 */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-light p-6 mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <FilterSection
-            label={listingType === 'rent' ? 'Monthly Rental' : 'Price Range'}
-            value={filters.priceRange}
-            onChange={(e) => setFilters(prev => ({ ...prev, priceRange: e.target.value }))}
-            options={priceRanges}
-          />
-          <FilterSection
-            label="Property Type"
-            value={filters.propertyType}
-            onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
-            options={propertyTypes}
-          />
-          <FilterSection
-            label="Location"
-            value={filters.location}
-            onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
-            options={locations}
-          />
+          <div className="bg-white rounded-lg shadow-sm border border-gray-light p-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <FilterSection
+                label={listingType === 'rent' ? 'Monthly Rental' : 'Price Range'}
+                value={filters.priceRange}
+                onChange={(e) => setFilters(prev => ({ ...prev, priceRange: e.target.value }))}
+                options={priceRanges}
+              />
+              <FilterSection
+                label="Property Type"
+                value={filters.propertyType}
+                onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
+                options={propertyTypes}
+              />
+              <FilterSection
+                label="Location"
+                value={filters.location}
+                onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
+                options={locations}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
         <div className="projects-page__content">
           {filteredProperties.length > 0 ? (
@@ -161,7 +161,7 @@ const ProjectsPage = () => {
                 <PropertyCard
                   key={property.id}
                   property={property}
-                  onClick={() => setSelectedProperty(property)}
+                  onClick={() => handlePropertyClick(property)}
                 />
               ))}
             </div>
@@ -172,13 +172,6 @@ const ProjectsPage = () => {
           )}
         </div>
       </div>
-
-      {selectedProperty && (
-        <PropertyDetailsModal
-          property={selectedProperty}
-          onClose={() => setSelectedProperty(null)}
-        />
-      )}
     </div>
   );
 };

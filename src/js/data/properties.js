@@ -18,7 +18,7 @@ export const properties = [
     size: "775-1023",
     monthlyRepayment: 1649,
     description: "M Terra in Puchong offers affordable luxury living with modern amenities and excellent connectivity.",
-    preview: "/assets/images/properties/M-Terra/previews/condo-preview.jpg", // 单张预览图片
+    preview: "/src/assets/images/properties/M-Terra/previews/condo-preview.jpg",
     features: [
       "Strategic location",
       "Modern design",
@@ -28,45 +28,25 @@ export const properties = [
     facilities: [
       {
         id: "fac-1",
-        name: "Swimming Pool",
-        image: "/assets/images/properties/M-Terra/facilities/swimming-pool.jpg",
-        description: "Luxury infinity pool for residents"
+        name: "Overview",
+        image: "/src/assets/images/properties/M-Terra/facilities/overview.jpg",
+        description: "Property Overview"
       },
       {
         id: "fac-2",
-        name: "Gymnasium",
-        image: "/assets/images/properties/M-Terra/facilities/gym.jpg",
-        description: "Fully equipped modern gymnasium"
-      },
-      {
-        id: "fac-3",
-        name: "Playground",
-        image: "/assets/images/properties/M-Terra/facilities/playground.jpg",
-        description: "Children's playground area"
-      },
-      {
-        id: "fac-4",
-        name: "BBQ Area",
-        image: "/assets/images/properties/M-Terra/facilities/bbq.jpg",
-        description: "Outdoor BBQ and dining area"
+        name: "Swimming Pool",
+        image: "/src/assets/images/properties/M-Terra/facilities/swimming-pool.jpg",
+        description: "Luxury swimming pool for residents"
       }
     ],
     floorPlans: [
-      {
-        id: "fp-1",
-        type: "Type A",
-        size: "775 sqft",
-        bedrooms: 2,
-        bathrooms: 2,
-        image: "/assets/images/properties/M-Terra/floor-plans/type-a.jpg"
-      },
       {
         id: "fp-2",
         type: "Type B",
         size: "850 sqft",
         bedrooms: 3,
         bathrooms: 2,
-        image: "/assets/images/properties/M-Terra/floor-plans/type-b.jpg"
+        image: "/src/assets/images/properties/M-Terra/floor-plans/type-b.png"
       },
       {
         id: "fp-3",
@@ -74,27 +54,39 @@ export const properties = [
         size: "1023 sqft",
         bedrooms: 3,
         bathrooms: 2,
-        image: "/assets/images/properties/M-Terra/floor-plans/type-c.jpg"
+        image: "/src/assets/images/properties/M-Terra/floor-plans/type-c.png"
       }
     ],
-    gallery: [
+    interior: [
       {
-        id: "gal-1",
-        category: "exterior",
-        image: "/assets/images/properties/M-Terra/gallery/exterior-1.jpg",
-        description: "Building Facade"
+        id: "int-1",
+        name: "Bathroom",
+        image: "/src/assets/images/properties/M-Terra/interior/bathroom.png",
+        description: "Modern bathroom design"
       },
       {
-        id: "gal-2",
-        category: "interior",
-        image: "/assets/images/properties/M-Terra/gallery/interior-1.jpg",
-        description: "Living Room Sample"
+        id: "int-2",
+        name: "Kitchen",
+        image: "/src/assets/images/properties/M-Terra/interior/kitchen.png",
+        description: "Spacious kitchen layout"
       },
       {
-        id: "gal-3",
-        category: "surroundings",
-        image: "/assets/images/properties/M-Terra/gallery/surroundings-1.jpg",
-        description: "Neighborhood View"
+        id: "int-3",
+        name: "Living Room",
+        image: "/src/assets/images/properties/M-Terra/interior/livingroom.png",
+        description: "Contemporary living space"
+      },
+      {
+        id: "int-4",
+        name: "Master Room",
+        image: "/src/assets/images/properties/M-Terra/interior/masterroom.png",
+        description: "Comfortable master bedroom"
+      },
+      {
+        id: "int-5",
+        name: "Second Room",
+        image: "/src/assets/images/properties/M-Terra/interior/secondroom.png",
+        description: "Cozy second bedroom"
       }
     ],
     additionalInfo: {
@@ -106,7 +98,7 @@ export const properties = [
   }
 ];
 
-// Helper function to filter properties (保持不变)
+// 保持筛选函数不变
 export const filterProperties = (properties, filters) => {
   const { listingType, propertyCategory, priceRange, propertyType, location } = filters;
 

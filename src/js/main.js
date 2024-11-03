@@ -1,5 +1,4 @@
 // main.js
-import { Navigation } from './components/navigation';
 import { initializeAnimations } from './utils/animations';
 
 document.addEventListener('DOMContentLoaded', () => {    

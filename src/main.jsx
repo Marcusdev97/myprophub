@@ -7,19 +7,9 @@ import HomePage from './js/pages/home';
 import ServicesPage from './js/pages/services';
 import Contact from './js/pages/contact';
 import ProjectsPage from './js/pages/projects';
+import PropertyDetails from './js/components/PropertyDetails';
 import './index.css';
 import './styles/main.scss';
-
-// 将 Home 组件分离出来
-const Home = () => {
-  return (
-    <div className="content-container">
-      <div className="home-content">
-        <p className="text-xl text-gray-600">Welcome to MyPropHub!</p>
-      </div>
-    </div>
-  );
-};
 
 // 将 App 组件分离出来
 const App = () => {
@@ -31,6 +21,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/properties/:id" element={<PropertyDetails />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

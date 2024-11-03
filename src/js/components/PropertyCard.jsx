@@ -2,7 +2,7 @@ import React from 'react';
 
 const PropertyCard = ({ property, onClick }) => {
   const {
-    image,
+    preview, // 改用 preview 而不是 image
     name,
     developer,
     location,
@@ -22,7 +22,7 @@ const PropertyCard = ({ property, onClick }) => {
       {/* Property Image */}
       <div className="relative h-48">
         <img 
-          src={image} 
+          src={preview || '/src/assets/images/properties/M-Terra/previews/condo-preview.jpg'} 
           alt={name}
           className="w-full h-full object-cover"
         />
