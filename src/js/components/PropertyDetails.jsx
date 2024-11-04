@@ -1,10 +1,36 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { properties } from '../data/properties';
-import { CheckIcon, MessageCircle } from 'lucide-react';
+import { CheckIcon, MessageCircle, X } from 'lucide-react';
+
+// ImageModal Component
+const ImageModal = ({ image, alt, onClose }) => {
+  return (
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div className="relative max-w-7xl mx-auto p-4 w-full">
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 text-white hover:text-gray-300 transition-colors"
+        >
+          <X className="w-8 h-8" />
+        </button>
+        <img
+          src={image}
+          alt={alt}
+          className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
+          onClick={e => e.stopPropagation()}
+        />
+      </div>
+    </div>
+  );
+};
 
 const PropertyDetails = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [selectedImage, setSelectedImage] = useState(null);
   const { id } = useParams();
   
   const property = properties.find(p => p.id === parseInt(id));
@@ -42,15 +68,28 @@ const PropertyDetails = () => {
   const imageContainerClass = "relative overflow-hidden rounded-lg shadow-sm";
   const imageClass = "w-full h-[300px] object-cover hover:scale-105 transition-transform duration-300";
 
+  // 处理图片点击
+  const handleImageClick = (image, alt) => {
+    setSelectedImage({ image, alt });
+  };
+
   return (
     <div className="property-details-page">
+      {/* Image Modal */}
+      {selectedImage && (
+        <ImageModal
+          image={selectedImage.image}
+          alt={selectedImage.alt}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
+
       {/* WhatsApp Button */}
-      <a
-        href={`https://wa.me/601133698121?text=I'm interested in ${name}`}
+      <a href={`https://wa.me/601133698121?text=I'm interested in ${name}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed right-4 top-3/4 z-50 flex items-center bg-green-600 text-white rounded-full md:rounded-lg hover:bg-green-700 transition-colors shadow-lg"
-        >
+      >
         <div className="p-4 md:p-3">
           <MessageCircle className="w-8 h-8 md:w-6 md:h-6" />
         </div>
@@ -73,7 +112,7 @@ const PropertyDetails = () => {
 
       {/* Main Image */}
       <div className="content-container">
-        <div className={imageContainerClass}>
+        <div className={`${imageContainerClass} cursor-zoom-in`} onClick={() => handleImageClick(preview, name)}>
           <img 
             src={preview} 
             alt={name}
@@ -88,7 +127,9 @@ const PropertyDetails = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{name}</h1>
-            <p className="text-lg text-gray-600 mt-2">{location}</p>
+            <p className="text-lg text-gray-600 mt-2">
+              {typeof location === 'string' ? location : location.description}
+            </p>
             <div className="text-xl font-semibold text-primary mt-2">
               From RM {price.toLocaleString()}
             </div>
@@ -135,7 +176,7 @@ const PropertyDetails = () => {
       <div className="content-container">
         <div className="border-b overflow-x-auto">
           <nav className="flex gap-6 min-w-max">
-            {['overview', 'interior', 'floorplans'].map((tab) => (
+            {['overview', 'interior', 'floorplans', 'location'].map((tab) => (
               <button
                 key={tab}
                 className={`pb-3 px-1 ${
@@ -156,7 +197,10 @@ const PropertyDetails = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {facilities.map((facility) => (
                 <div key={facility.id}>
-                  <div className={imageContainerClass}>
+                  <div 
+                    className={`${imageContainerClass} cursor-zoom-in`}
+                    onClick={() => handleImageClick(facility.image, facility.name)}
+                  >
                     <img 
                       src={facility.image} 
                       alt={facility.name}
@@ -174,7 +218,10 @@ const PropertyDetails = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {interior.map((room) => (
                 <div key={room.id}>
-                  <div className={imageContainerClass}>
+                  <div 
+                    className={`${imageContainerClass} cursor-zoom-in`}
+                    onClick={() => handleImageClick(room.image, room.name)}
+                  >
                     <img 
                       src={room.image} 
                       alt={room.name}
@@ -201,7 +248,10 @@ const PropertyDetails = () => {
                     </div>
                     <span className="text-primary font-medium mt-2 md:mt-0">{plan.size}</span>
                   </div>
-                  <div className="p-4 bg-white">
+                  <div 
+                    className="p-4 bg-white cursor-zoom-in"
+                    onClick={() => handleImageClick(plan.image, plan.type)}
+                  >
                     <img 
                       src={plan.image} 
                       alt={plan.type}
@@ -210,6 +260,25 @@ const PropertyDetails = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {activeTab === 'location' && location && typeof location === 'object' && (
+            <div className="grid grid-cols-1 gap-6">
+              <div 
+                className={`${imageContainerClass} cursor-zoom-in`}
+                onClick={() => handleImageClick(location.image, "Property Location")}
+              >
+                <img 
+                  src={location.image} 
+                  alt="Property Location"
+                  className={imageClass}
+                />
+              </div>
+              <div>
+                <h3 className="text-lg font-medium mt-4">Location</h3>
+                <p className="text-gray-600 mt-2">{location.description}</p>
+              </div>
             </div>
           )}
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const PropertyCard = ({ property, onClick }) => {
   const {
-    preview, // 改用 preview 而不是 image
+    preview,
     name,
     developer,
     location,
@@ -13,6 +13,9 @@ const PropertyCard = ({ property, onClick }) => {
     bathrooms,
     size,
   } = property;
+
+  // 处理 location 显示
+  const locationDisplay = typeof location === 'object' ? location.description : location;
 
   return (
     <div 
@@ -36,7 +39,7 @@ const PropertyCard = ({ property, onClick }) => {
         <h3 className="text-lg font-semibold text-text mb-2">{name}</h3>
         <p className="text-gray text-sm mb-2">By {developer}</p>
         <p className="text-gray-600 flex items-center text-sm mb-3">
-          <span className="mr-1">📍</span> {location}
+          <span className="mr-1">📍</span> {locationDisplay}
         </p>
 
         {/* Property Details */}
