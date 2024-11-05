@@ -1,6 +1,5 @@
-// src/js/pages/projects.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 import { properties, filterProperties } from '../data/properties';
 
@@ -25,6 +24,7 @@ const FilterSection = ({ label, value, onChange, options }) => (
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [listingType, setListingType] = useState('sale');
   const [propertyCategory, setPropertyCategory] = useState('new');
   const [filters, setFilters] = useState({
@@ -32,6 +32,23 @@ const ProjectsPage = () => {
     propertyType: 'any',
     location: 'any',
   });
+
+  // 处理从服务页面导航来的状态
+  useEffect(() => {
+    if (location.state) {
+      const { listingType: newListingType, initialCategory } = location.state;
+      
+      if (newListingType) {
+        setListingType(newListingType);
+        // 重置价格范围，因为租售价格范围选项不同
+        setFilters(prev => ({ ...prev, priceRange: 'any' }));
+      }
+      
+      if (initialCategory) {
+        setPropertyCategory(initialCategory);
+      }
+    }
+  }, [location.state]);
 
   // 价格范围选项
   const priceRanges = listingType === 'rent' 
@@ -53,6 +70,17 @@ const ProjectsPage = () => {
   
   const handlePropertyClick = (property) => {
     navigate(`/properties/${property.id}`);
+  };
+
+  // 切换列表类型时的处理
+  const handleListingTypeChange = (type) => {
+    setListingType(type);
+    // 如果切换到租赁，重置 propertyCategory
+    if (type === 'rent') {
+      setPropertyCategory('');
+    }
+    // 重置价格范围
+    setFilters(prev => ({ ...prev, priceRange: 'any' }));
   };
 
   // 房产类型选项
@@ -80,15 +108,22 @@ const ProjectsPage = () => {
     ...filters
   });
 
+  // 获取适当的副标题文本
+  const getSubtitleText = () => {
+    if (listingType === 'rent') {
+      return 'Browse through our selection of properties available for rent.';
+    }
+    return propertyCategory === 'new'
+      ? 'Explore our latest new property developments.'
+      : 'Discover our collection of subsale properties.';
+  };
+
   return (
     <div className="content-container">
       <div className="projects-page">
         <div className="projects-page__header">
           <h1 className="projects-page__title">Property Listings</h1>
-          <p className="projects-page__subtitle">
-            Find your perfect property in Malaysia. Browse through our curated selection 
-            of properties for sale and rent.
-          </p>
+          <p className="projects-page__subtitle">{getSubtitleText()}</p>
         </div>
 
         <div className="projects-page__filters">
@@ -96,13 +131,13 @@ const ProjectsPage = () => {
             <div className="toggle-buttons__primary">
               <button 
                 className={`toggle-button ${listingType === 'sale' ? 'toggle-button--active' : ''}`}
-                onClick={() => setListingType('sale')}
+                onClick={() => handleListingTypeChange('sale')}
               >
                 Buy Property
               </button>
               <button 
                 className={`toggle-button ${listingType === 'rent' ? 'toggle-button--active' : ''}`}
-                onClick={() => setListingType('rent')}
+                onClick={() => handleListingTypeChange('rent')}
               >
                 Rent Property
               </button>
