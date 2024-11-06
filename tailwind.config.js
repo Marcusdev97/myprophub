@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     extend: {
+      // 保持现有的颜色配置
       colors: {
         'primary': {
           DEFAULT: '#2563eb',
@@ -26,7 +27,36 @@ export default {
           light: '#e5e7eb',
           dark: '#374151',
         }
-      }
+      },
+      // 添加自定义容器配置
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          sm: '2rem',
+          lg: '4rem',
+          xl: '5rem',
+          '2xl': '6rem',
+        },
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+          '2xl': '1536px',
+        },
+      },
+      // 自定义间距
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '30': '7.5rem',
+      },
+      // 自定义最大宽度
+      maxWidth: {
+        'screen-xl': '1440px',
+        'screen-2xl': '1600px',
+      },
     },
   },
   plugins: [],

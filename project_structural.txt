@@ -1,4 +1,5 @@
 .
+├── .DS_Store
 ├── .gitignore
 ├── README.md
 ├── index.html
@@ -6,31 +7,61 @@
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.js
+├── project_structural.txt
 ├── src
+│   ├── .DS_Store
 │   ├── assets
+│   │   ├── .DS_Store
 │   │   ├── icons
 │   │   └── images
+│   │       ├── .DS_Store
 │   │       └── properties
-│   │           └── M-Terra
+│   │           ├── .DS_Store
+│   │           ├── M-Terra
+│   │           │   ├── facilities
+│   │           │   │   ├── overview.jpg
+│   │           │   │   └── swimming-pool.jpg
+│   │           │   ├── floor-plans
+│   │           │   │   ├── type-b.png
+│   │           │   │   └── type-c.png
+│   │           │   ├── interior
+│   │           │   │   ├── bathroom.png
+│   │           │   │   ├── kitchen.png
+│   │           │   │   ├── livingroom.png
+│   │           │   │   ├── masterroom.png
+│   │           │   │   └── secondroom.png
+│   │           │   ├── location
+│   │           │   │   └── location.jpg
+│   │           │   └── previews
+│   │           │       └── condo-preview.jpg
+│   │           └── Sanderling
+│   │               ├── .DS_Store
 │   │               ├── facilities
-│   │               │   ├── overview.jpg
-│   │               │   └── swimming-pool.jpg
+│   │               │   ├── gym.jpg
+│   │               │   ├── jogging-track.jpg
+│   │               │   ├── maze-garden.jpg
+│   │               │   └── sky-swimming-pool.jpeg
 │   │               ├── floor-plans
-│   │               │   ├── type-b.png
-│   │               │   └── type-c.png
+│   │               │   ├── .DS_Store
+│   │               │   ├── type-a.png
+│   │               │   └── type-b.jpg
 │   │               ├── interior
-│   │               │   ├── bathroom.png
-│   │               │   ├── kitchen.png
-│   │               │   ├── livingroom.png
-│   │               │   ├── masterroom.png
-│   │               │   └── secondroom.png
+│   │               │   ├── balcony.jpg
+│   │               │   ├── kitchen-area.jpg
+│   │               │   ├── living-room.jpeg
+│   │               │   ├── master-studio-room.jpg
+│   │               │   ├── second-room.jpg
+│   │               │   └── small-room.jpg
 │   │               ├── location
-│   │               │   └── location.jpg
+│   │               │   ├── .DS_Store
+│   │               │   └── location.png
 │   │               └── previews
 │   │                   └── condo-preview.jpg
 │   ├── index.css
 │   ├── js
 │   │   ├── components
+│   │   │   ├── FilterSection.jsx
+│   │   │   ├── ImageModal.jsx
 │   │   │   ├── PropertyCard.jsx
 │   │   │   ├── PropertyDetails.jsx
 │   │   │   ├── ServiceCard.jsx
@@ -68,8 +99,10 @@
 │       ├── components
 │       │   ├── _buttons.scss
 │       │   ├── _cards.scss
+│       │   ├── _filter-section.scss
 │       │   ├── _index.scss
 │       │   ├── _navigation.scss
+│       │   ├── _property-card.scss
 │       │   ├── _property-details.scss
 │       │   └── _service-card.scss
 │       ├── layouts
@@ -88,3 +121,5 @@
 │           └── _services.scss
 ├── tailwind.config.js
 └── vite.config.js
+
+31 directories, 92 files

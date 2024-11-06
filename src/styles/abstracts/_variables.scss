@@ -1,4 +1,3 @@
-// _variables.scss
 :root {
   // Typography
   --font-family-primary: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -21,98 +20,75 @@
   
   // Spacing
   --spacing-0: 0;
-  --spacing-1: 0.25rem;  // 4px
-  --spacing-2: 0.5rem;   // 8px
-  --spacing-3: 0.75rem;  // 12px
-  --spacing-4: 1rem;     // 16px
-  --spacing-5: 1.25rem;  // 20px
-  --spacing-6: 1.5rem;   // 24px
-  --spacing-8: 2rem;     // 32px
-  --spacing-10: 2.5rem;  // 40px
-  --spacing-12: 3rem;    // 48px
+  --spacing-1: 0.25rem;      // 4px
+  --spacing-2: 0.5rem;       // 8px
+  --spacing-3: 0.75rem;      // 12px
+  --spacing-4: 1rem;         // 16px
+  --spacing-5: 1.25rem;      // 20px
+  --spacing-6: 1.5rem;       // 24px
+  --spacing-8: 2rem;         // 32px
+  --spacing-10: 2.5rem;      // 40px
+  --spacing-12: 3rem;        // 48px
+  --spacing-14: 3.5rem;      // 56px - 新增
+  --spacing-16: 4rem;        // 64px
+  --spacing-18: 4.5rem;      // 72px - 新增
+  --spacing-20: 5rem;        // 80px
+  --spacing-24: 6rem;        // 96px
+  --spacing-32: 8rem;        // 128px
 
-  // Breakpoints (if needed)
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
+  // Colors
+  --color-white: #ffffff;
+  --color-primary: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-primary-dark: #1d4ed8;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-light: #e5e7eb;
+  --color-bg-secondary: #f3f4f6;
+
+  // Layout
+  --header-height: 5rem;          // 移动端默认
+  --header-height-sm: 6rem;       // >= 375px 
+  --header-height-md: 7rem;       // >= 414px
+  --header-height-lg: 8rem;       // >= 768px
+
+  --footer-height: 3rem;          // 移动端默认
+  --footer-height-sm: 3.5rem;     // >= 375px
+  --footer-height-md: 4rem;       // >= 414px
+  --footer-height-lg: 4.5rem;     // >= 768px
+
+  // Breakpoints
+  --screen-xs: 360px;    // Small phones
+  --screen-sm: 375px;    // Medium phones
+  --screen-md: 414px;    // Large phones
+  --screen-lg: 768px;    // Tablets
+  --screen-xl: 1024px;   // Small laptops
+  --screen-2xl: 1280px;  // Desktops
+  --screen-3xl: 1440px;  // Large desktops
+  --screen-4xl: 1920px;  // Extra large screens
   
-  // Navigation Specific
-  --nav-height: 4rem;
-  --nav-padding-x: var(--spacing-4);
-  --nav-padding-y: var(--spacing-2);
-  --nav-font-size: var(--font-size-base);
-  --nav-logo-size: var(--font-size-xl);
+  // Container Widths
+  --container-xs: 100%;
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-2xl: 1320px;
+  --container-3xl: 1500px;
+  --container-4xl: 1800px;
 
-    // Color Settings
-    --color-white: #ffffff;
-    --color-primary: #2563eb;
-    --color-primary-light: #60a5fa;
-    --color-text: #1f2937;
-    --color-text-light: #6b7280;
-    --color-gray-50: #f9fafb;
-    --color-gray-100: #f3f4f6;
-    --color-gray-200: #e5e7eb;
-    --color-gray-light: #e5e7eb;
+  // Main Content Spacing
+  --main-spacing: var(--spacing-4);          // 移动端默认 16px
+  --main-spacing-sm: var(--spacing-6);       // >= 375px  24px
+  --main-spacing-md: var(--spacing-8);       // >= 414px  32px
+  --main-spacing-lg: var(--spacing-10);      // >= 768px  40px
 
-    // Layout
-    --nav-height: 5rem;
-}
-
-// _typography.scss
-body {
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-primary);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-}
-
-h1 {
-  font-size: var(--font-size-4xl);
-  margin-bottom: var(--spacing-6);
-}
-
-h2 {
-  font-size: var(--font-size-3xl);
-  margin-bottom: var(--spacing-4);
-}
-
-h3 {
-  font-size: var(--font-size-2xl);
-  margin-bottom: var(--spacing-4);
-}
-
-p {
-  margin-bottom: var(--spacing-4);
-}
-
-// _layout.scss
-.page-container {
-  padding-top: var(--nav-height);
-  min-height: 100vh;
-}
-
-.content-container {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: var(--spacing-6) var(--spacing-4);
-  
-  @media (min-width: 640px) {
-    padding: var(--spacing-8) var(--spacing-6);
-  }
-  
-  @media (min-width: 1024px) {
-    padding: var(--spacing-10) var(--spacing-8);
-  }
-}
-
-.section {
-  margin-bottom: var(--spacing-12);
+   // Layout Container
+   --layout-container-padding: var(--spacing-4);           // 移动端默认
+   --layout-container-padding-sm: var(--spacing-6);        // >= 375px
+   --layout-container-padding-md: var(--spacing-8);        // >= 414px
+   --layout-container-padding-lg: var(--spacing-10);       // >= 768px
 }

@@ -1,21 +1,102 @@
-// src/styles/layouts/_layout.scss
-.page-container {
-  padding-top: var(--nav-height);
-  min-height: calc(100vh - var(--nav-height));
-  background-color: var(--color-bg-secondary);
-  overflow-y: hidden; // 防止整页滚动
-}
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as *;
 
-.content-container {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: var(--spacing-6) var(--spacing-4);
-  
-  @media (min-width: 640px) {
-    padding: var(--spacing-8) var(--spacing-6);
+.layout {
+  & {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative; // 添加相对定位
   }
-  
-  @media (min-width: 1024px) {
-    padding: var(--spacing-10) var(--spacing-8);
+
+  &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    z-index: 50;
+    background-color: var(--color-white);
+
+    @include sm {
+      height: var(--header-height-sm);
+    }
+
+    @include md {
+      height: var(--header-height-md);
+    }
+
+    @include lg {
+      height: var(--header-height-lg);
+    }
+  }
+
+  &__main {
+    flex: 1;
+    margin-top: var(--header-height); // 给header留出空间
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    width: 100%;
+    overflow-y: auto; // 允许内容滚动
+    background-color: var(--color-background-secondary);
+    padding: var(--spacing-4) 0;
+
+    @include sm {
+      margin-top: var(--header-height-sm);
+      min-height: calc(100vh - var(--header-height-sm) - var(--footer-height-sm));
+      padding: var(--spacing-6) 0;
+    }
+
+    @include md {
+      margin-top: var(--header-height-md);
+      min-height: calc(100vh - var(--header-height-md) - var(--footer-height-md));
+      padding: var(--spacing-8) 0;
+    }
+
+    @include lg {
+      margin-top: var(--header-height-lg);
+      min-height: calc(100vh - var(--header-height-lg) - var(--footer-height-lg));
+    }
+  }
+
+  &__footer {
+    flex-shrink: 0; // 防止footer被压缩
+    width: 100%;
+    height: var(--footer-height);
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-gray-100);
+
+    @include sm {
+      height: var(--footer-height-sm);
+    }
+
+    @include md {
+      height: var(--footer-height-md);
+    }
+
+    @include lg {
+      height: var(--footer-height-lg);
+    }
+  }
+
+  &__container {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: var(--layout-container-padding);
+    padding-right: var(--layout-container-padding);
+
+    @include sm {
+      padding-left: var(--layout-container-padding-sm);
+      padding-right: var(--layout-container-padding-sm);
+    }
+
+    @include md {
+      padding-left: var(--layout-container-padding-md);
+      padding-right: var(--layout-container-padding-md);
+    }
+
+    @include lg {
+      padding-left: var(--layout-container-padding-lg);
+      padding-right: var(--layout-container-padding-lg);
+    }
   }
 }

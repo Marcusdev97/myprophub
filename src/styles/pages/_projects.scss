@@ -1,165 +1,193 @@
 // src/styles/pages/_projects.scss
-.projects-page {
-  padding: var(--spacing-8) 0;
-  min-height: 100vh;
-  overflow-y: auto;
+@use '../abstracts/mixins' as *;
 
+.projects-page {
+  // =================
+  // Header Section
+  // =================
   &__header {
     text-align: center;
     margin-bottom: var(--spacing-12);
+    
+    @media (min-width: 1024px) {
+      margin-bottom: var(--spacing-16);
+    }
   }
 
   &__title {
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
     color: var(--color-text);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-3);
+    
+    @media (min-width: 1024px) {
+      font-size: var(--font-size-4xl);
+    }
   }
 
   &__subtitle {
     font-size: var(--font-size-lg);
     color: var(--color-text-light);
-    max-width: 36rem;
-    margin: 0 auto;
-    line-height: 1.6;
+    margin-bottom: var(--spacing-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @media (min-width: 1024px) {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacing-10);
+      max-width: 800px;
+    }
   }
 
-  &__content {
-    margin-top: var(--spacing-8);
+  // =================
+  // Filters Section
+  // =================
+  &__filters {
+    margin-bottom: var(--spacing-10);
     
-    // 确保在小屏幕上内容可以滚动
-    @media (max-height: 800px) { // 高度阈值可以根据实际需求调整
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: var(--spacing-8);
-      
-      // 自定义滚动条样式
-      &::-webkit-scrollbar {
-        width: 6px;
+    @media (min-width: 1024px) {
+      margin-bottom: var(--spacing-16);
+    }
+  }
+
+  // Toggle Buttons
+  &__toggle-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+
+    @media (min-width: 768px) {
+      gap: var(--spacing-6);
+      margin-bottom: var(--spacing-8);
+    }
+  }
+
+  &__toggle-primary,
+  &__toggle-secondary {
+    display: flex;
+    gap: var(--spacing-2);
+
+    @media (min-width: 768px) {
+      gap: var(--spacing-4);
+    }
+  }
+
+  &__toggle-button {
+    min-width: 160px;
+    padding: var(--spacing-4) var(--spacing-6);
+    border-radius: 0.75rem;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    transition: all 0.2s ease;
+    border: none;
+    background-color: var(--color-gray-100);
+    color: var(--color-text);
+    cursor: pointer;
+
+    @media (min-width: 768px) {
+      min-width: 180px;
+      font-size: var(--font-size-lg);
+    }
+
+    // Button States
+    &:hover:not(.active) {
+      background-color: var(--color-gray-200);
+    }
+
+    &.active {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1),
+                 0 2px 4px -1px rgba(37, 99, 235, 0.06);
+    }
+
+    // Secondary Button Style
+    &.secondary {
+      min-width: 140px;
+      padding: var(--spacing-3) var(--spacing-5);
+      background-color: var(--color-gray-50);
+
+      @media (min-width: 768px) {
+        min-width: 160px;
       }
 
-      &::-webkit-scrollbar-track {
-        background: var(--color-gray-50);
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: var(--color-gray-200);
-        border-radius: 3px;
-        
-        &:hover {
-          background: var(--color-gray-light);
-        }
+      &.active {
+        background-color: var(--color-gray-200);
+        color: var(--color-text);
+        font-weight: 600;
       }
     }
   }
 
+  // Filter Content Area
+  &__filters-content {
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    padding: var(--spacing-6);
+    border: 1px solid var(--color-gray-100);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    @media (min-width: 768px) {
+      padding: var(--spacing-6) var(--spacing-8);
+    }
+
+    @media (min-width: 1024px) {
+      padding: var(--spacing-8) var(--spacing-10);
+    }
+  }
+
+  &__filters-row {
+    display: flex;
+    gap: var(--spacing-4);
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: var(--spacing-6);
+    }
+
+    @media (min-width: 1024px) {
+      gap: var(--spacing-8);
+    }
+
+    > * {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  // =================
+  // Property Grid
+  // =================
   &__grid {
     display: grid;
     gap: var(--spacing-6);
     grid-template-columns: 1fr;
-    padding-bottom: var(--spacing-8); // 添加底部间距
     
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-8);
     }
     
-    @media (min-width: 1024px) {
+    @media (min-width: 1920px) {
       grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-10);
     }
   }
 
+  // =================
+  // Empty State
+  // =================
   &__empty {
     text-align: center;
     padding: var(--spacing-12);
     background-color: var(--color-white);
     border-radius: 1rem;
+    border: 1px solid var(--color-gray-100);
     color: var(--color-text-light);
-  }
-}
-
-// 切换按钮样式
-.toggle-buttons {
-  margin-bottom: var(--spacing-6);
-
-  &__primary {
-    display: flex;
-    gap: var(--spacing-2);
-    margin-bottom: var(--spacing-4);
-  }
-
-  &__secondary {
-    display: flex;
-    gap: var(--spacing-2);
-  }
-}
-
-.toggle-button {
-  padding: var(--spacing-3) var(--spacing-6);
-  border-radius: 0.5rem;
-  font-weight: var(--font-weight-medium);
-  background-color: var(--color-gray-50);
-  color: var(--color-text);
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  min-width: 120px;
-  text-align: center;
-
-  &--active {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-  }
-
-  &:hover:not(&--active) {
-    background-color: var(--color-gray-100);
-  }
-
-  // 次要按钮样式
-  &--secondary {
-    background-color: var(--color-gray-50);
-
-    &.toggle-button--active {
-      background-color: var(--color-gray-200);
-      color: var(--color-text);
-    }
-
-    &:hover:not(.toggle-button--active) {
-      background-color: var(--color-gray-100);
-    }
-  }
-}
-
-// 筛选部分样式
-.filter-section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2);
-
-  &__label {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text);
-  }
-
-  &__select {
-    width: 100%;
-    padding: var(--spacing-3) var(--spacing-4);
-    border: 1px solid var(--color-gray-light);
-    border-radius: 0.5rem;
-    background-color: var(--color-white);
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-    transition: all 0.2s;
-    cursor: pointer;
-
-    &:focus {
-      outline: none;
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 2px var(--color-primary-light);
-    }
-
-    &:hover {
-      border-color: var(--color-primary);
-    }
+    font-size: var(--font-size-lg);
   }
 }

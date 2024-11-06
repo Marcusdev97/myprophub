@@ -1,4 +1,5 @@
 import React from 'react';
+import { MapPin, Bed, Bath, Square, ChevronRight } from 'lucide-react';
 
 const PropertyCard = ({ property, onClick }) => {
   const {
@@ -14,61 +15,65 @@ const PropertyCard = ({ property, onClick }) => {
     size,
   } = property;
 
-  // 处理 location 显示
   const locationDisplay = typeof location === 'object' ? location.description : location;
 
+  const formatPrice = (value) => {
+    return value.toLocaleString('en-MY', {
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    });
+  };
+
   return (
-    <div 
-      className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-shadow duration-300"
-      onClick={onClick}
-    >
-      {/* Property Image */}
-      <div className="relative h-48">
+    <article className="property-card" onClick={onClick}>
+      <div className="property-card__image-container">
         <img 
-          src={preview || '/src/assets/images/properties/M-Terra/previews/condo-preview.jpg'} 
+          src={preview} 
           alt={name}
-          className="w-full h-full object-cover"
+          className="property-card__image"
         />
-        <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-          {type}
-        </div>
+        <span className="property-card__tag">{type}</span>
       </div>
 
-      {/* Property Information */}
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-text mb-2">{name}</h3>
-        <p className="text-gray text-sm mb-2">By {developer}</p>
-        <p className="text-gray-600 flex items-center text-sm mb-3">
-          <span className="mr-1">📍</span> {locationDisplay}
-        </p>
-
-        {/* Property Details */}
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-          <div className="flex items-center">
-            <span className="mr-1">🛏️</span> {bedrooms} Beds
-          </div>
-          <div className="flex items-center">
-            <span className="mr-1">🚿</span> {bathrooms} Baths
-          </div>
-          <div className="flex items-center">
-            <span className="mr-1">📏</span> {size} sqft
+      <div className="property-card__content">
+        <div className="property-card__header">
+          <h3 className="property-card__title">{name}</h3>
+          <p className="property-card__developer">By {developer}</p>
+          <div className="property-card__location">
+            <MapPin size={18} />
+            <span>{locationDisplay}</span>
           </div>
         </div>
 
-        {/* Price */}
-        <div className="mt-4 flex justify-between items-center">
-          <div className="text-primary font-bold">
-            {monthlyRent 
-              ? `RM ${monthlyRent.toLocaleString()}/month`
-              : `RM ${price.toLocaleString()}`
-            }
+        <div className="property-card__features">
+          <div className="property-card__feature">
+            <Bed size={18} />
+            <span>{bedrooms} Beds</span>
           </div>
-          <button className="bg-primary text-white px-4 py-2 rounded-lg text-sm hover:bg-primary-dark transition-colors">
+          <div className="property-card__feature">
+            <Bath size={18} />
+            <span>{bathrooms} Baths</span>
+          </div>
+          <div className="property-card__feature">
+            <Square size={18} />
+            <span>{size} sqft</span>
+          </div>
+        </div>
+
+        <div className="property-card__footer">
+          <div className="property-card__price">
+            <span className="property-card__price-value">
+              RM {monthlyRent ? formatPrice(monthlyRent) : formatPrice(price)}
+            </span>
+            {monthlyRent && <span className="property-card__price-period">/month</span>}
+          </div>
+          <button className="property-card__button">
             View Details
+            <ChevronRight size={18} />
           </button>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

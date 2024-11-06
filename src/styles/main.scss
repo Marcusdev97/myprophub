@@ -4,18 +4,22 @@
 @use 'layouts' as *;
 @use 'pages' as *;
 
-// main.scss
-.page-container {
-    padding-top: 4rem; // 导航栏的高度
-    min-height: calc(100vh - 4rem);
+html, body, #root {
+    height: 100%;
   }
   
-  .content-container {
-    max-width: 80rem;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    
-    @media (min-width: 640px) {
-      padding: 2rem;
-    }
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 确保内容区域可以滚动 */
+  main {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }

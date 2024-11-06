@@ -1,26 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
+import FilterSection from '../components/FilterSection';
 import { properties, filterProperties } from '../data/properties';
-
-const FilterSection = ({ label, value, onChange, options }) => (
-  <div className="filter-section">
-    <label className="filter-section__label">
-      {label}
-    </label>
-    <select
-      value={value}
-      onChange={onChange}
-      className="filter-section__select"
-    >
-      {options.map(option => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
-  </div>
-);
+import { Container, Section, Grid } from '../components/Layout';
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
@@ -32,23 +15,6 @@ const ProjectsPage = () => {
     propertyType: 'any',
     location: 'any',
   });
-
-  // 处理从服务页面导航来的状态
-  useEffect(() => {
-    if (location.state) {
-      const { listingType: newListingType, initialCategory } = location.state;
-      
-      if (newListingType) {
-        setListingType(newListingType);
-        // 重置价格范围，因为租售价格范围选项不同
-        setFilters(prev => ({ ...prev, priceRange: 'any' }));
-      }
-      
-      if (initialCategory) {
-        setPropertyCategory(initialCategory);
-      }
-    }
-  }, [location.state]);
 
   // 价格范围选项
   const priceRanges = listingType === 'rent' 
@@ -67,23 +33,7 @@ const ProjectsPage = () => {
         { value: '1m-2m', label: 'RM 1,000,000 - RM 2,000,000' },
         { value: 'above-2m', label: 'Above RM 2,000,000' },
       ];
-  
-  const handlePropertyClick = (property) => {
-    navigate(`/properties/${property.id}`);
-  };
 
-  // 切换列表类型时的处理
-  const handleListingTypeChange = (type) => {
-    setListingType(type);
-    // 如果切换到租赁，重置 propertyCategory
-    if (type === 'rent') {
-      setPropertyCategory('');
-    }
-    // 重置价格范围
-    setFilters(prev => ({ ...prev, priceRange: 'any' }));
-  };
-
-  // 房产类型选项
   const propertyTypes = [
     { value: 'any', label: 'All Types' },
     { value: 'condo', label: 'Condominium' },
@@ -93,7 +43,6 @@ const ProjectsPage = () => {
     { value: 'bungalow', label: 'Bungalow' },
   ];
 
-  // 地区选项
   const locations = [
     { value: 'any', label: 'All Locations' },
     { value: 'kl', label: 'Kuala Lumpur' },
@@ -102,13 +51,31 @@ const ProjectsPage = () => {
     { value: 'johor', label: 'Johor' },
   ];
 
-  const filteredProperties = filterProperties(properties, {
-    listingType,
-    propertyCategory,
-    ...filters
-  });
+  useEffect(() => {
+    if (location.state) {
+      const { listingType: newListingType, initialCategory } = location.state;
+      if (newListingType) {
+        setListingType(newListingType);
+        setFilters(prev => ({ ...prev, priceRange: 'any' }));
+      }
+      if (initialCategory) {
+        setPropertyCategory(initialCategory);
+      }
+    }
+  }, [location.state]);
 
-  // 获取适当的副标题文本
+  const handlePropertyClick = (property) => {
+    navigate(`/properties/${property.id}`);
+  };
+
+  const handleListingTypeChange = (type) => {
+    setListingType(type);
+    if (type === 'rent') {
+      setPropertyCategory('');
+    }
+    setFilters(prev => ({ ...prev, priceRange: 'any' }));
+  };
+
   const getSubtitleText = () => {
     if (listingType === 'rent') {
       return 'Browse through our selection of properties available for rent.';
@@ -118,45 +85,68 @@ const ProjectsPage = () => {
       : 'Discover our collection of subsale properties.';
   };
 
+  const filteredProperties = filterProperties(properties, {
+    listingType,
+    propertyCategory,
+    ...filters
+  });
+
   return (
-    <div className="content-container">
-      <div className="projects-page">
-        <div className="projects-page__header">
-          <h1 className="projects-page__title">Property Listings</h1>
-          <p className="projects-page__subtitle">{getSubtitleText()}</p>
+    <Section className="py-4 sm:py-6 md:py-10">
+      <Container size="default" className="max-w-6xl">
+        {/* Header Section - 调整移动端间距 */}
+        <div className="flex flex-col items-center mb-6 sm:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Property Listings</h1>
+          <p className="text-center text-gray-600 text-sm sm:text-base max-w-xl px-4 sm:px-0">{getSubtitleText()}</p>
         </div>
 
-        <div className="projects-page__filters">
-          <div className="toggle-buttons">
-            <div className="toggle-buttons__primary">
+        {/* Filters Section - 优化移动端布局 */}
+        <div className="mb-6 sm:mb-8">
+          {/* Toggle Buttons - 调整按钮大小和间距 */}
+          <div className="flex flex-col items-center gap-3 sm:gap-4 mb-6">
+            {/* Primary Toggle */}
+            <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-center">
               <button 
-                className={`toggle-button ${listingType === 'sale' ? 'toggle-button--active' : ''}`}
+                className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-lg text-sm font-medium transition-colors
+                  ${listingType === 'sale' 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
                 onClick={() => handleListingTypeChange('sale')}
               >
                 Buy Property
               </button>
               <button 
-                className={`toggle-button ${listingType === 'rent' ? 'toggle-button--active' : ''}`}
+                className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-lg text-sm font-medium transition-colors
+                  ${listingType === 'rent' 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
                 onClick={() => handleListingTypeChange('rent')}
               >
                 Rent Property
               </button>
             </div>
 
+            {/* Secondary Toggle */}
             {listingType === 'sale' && (
-              <div className="toggle-buttons__secondary">
+              <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-center">
                 <button 
-                  className={`toggle-button toggle-button--secondary ${
-                    propertyCategory === 'new' ? 'toggle-button--active' : ''
-                  }`}
+                  className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-lg text-sm font-medium border transition-colors
+                    ${propertyCategory === 'new'
+                      ? 'border-primary text-primary bg-primary/5'
+                      : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                    }`}
                   onClick={() => setPropertyCategory('new')}
                 >
                   New Projects
                 </button>
                 <button 
-                  className={`toggle-button toggle-button--secondary ${
-                    propertyCategory === 'subsale' ? 'toggle-button--active' : ''
-                  }`}
+                  className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-lg text-sm font-medium border transition-colors
+                    ${propertyCategory === 'subsale'
+                      ? 'border-primary text-primary bg-primary/5'
+                      : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                    }`}
                   onClick={() => setPropertyCategory('subsale')}
                 >
                   Subsale
@@ -165,49 +155,52 @@ const ProjectsPage = () => {
             )}
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-light p-6 mb-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <FilterSection
-                label={listingType === 'rent' ? 'Monthly Rental' : 'Price Range'}
-                value={filters.priceRange}
-                onChange={(e) => setFilters(prev => ({ ...prev, priceRange: e.target.value }))}
-                options={priceRanges}
-              />
-              <FilterSection
-                label="Property Type"
-                value={filters.propertyType}
-                onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
-                options={propertyTypes}
-              />
-              <FilterSection
-                label="Location"
-                value={filters.location}
-                onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
-                options={locations}
-              />
-            </div>
+          {/* Filter Controls */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <FilterSection
+              label={listingType === 'rent' ? 'Monthly Rental' : 'Price Range'}
+              value={filters.priceRange}
+              onChange={(e) => setFilters(prev => ({ ...prev, priceRange: e.target.value }))}
+              options={priceRanges}
+            />
+            <FilterSection
+              label="Property Type"
+              value={filters.propertyType}
+              onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
+              options={propertyTypes}
+            />
+            <FilterSection
+              label="Location"
+              value={filters.location}
+              onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
+              options={locations}
+            />
           </div>
         </div>
 
-        <div className="projects-page__content">
-          {filteredProperties.length > 0 ? (
-            <div className="projects-page__grid">
-              {filteredProperties.map(property => (
-                <PropertyCard
-                  key={property.id}
-                  property={property}
-                  onClick={() => handlePropertyClick(property)}
-                />
-              ))}
+        {/* Properties Grid - 优化移动端卡片间距 */}
+        {filteredProperties.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+            {filteredProperties.map(property => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+                onClick={() => handlePropertyClick(property)}
+                className="mx-auto w-full max-w-sm sm:max-w-none" // 控制移动端卡片宽度
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex justify-center px-4 sm:px-0">
+            <div className="text-center p-4 sm:p-6 bg-gray-50 rounded-lg max-w-lg w-full">
+              <p className="text-gray-600 text-sm sm:text-base">
+                No properties found matching your criteria. Please try adjusting your filters.
+              </p>
             </div>
-          ) : (
-            <div className="projects-page__empty">
-              <p>No properties found matching your criteria. Please try adjusting your filters.</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+          </div>
+        )}
+      </Container>
+    </Section>
   );
 };
 
