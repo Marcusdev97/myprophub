@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Building2, Home, KeyRound, Banknote } from 'lucide-react';
 import ServiceCard from '../components/ServiceCard.jsx';
+import { Container, Section } from '../components/Layout';
 
 const ServicesPage = () => {
   const navigate = useNavigate();
@@ -53,26 +54,31 @@ const ServicesPage = () => {
   ];
 
   return (
-    <div className="content-container">
-      <div className="services-page">
-        <div className="services-page__header">
-          <h1 className="services-page__title">Our Professional Services</h1>
-          <p className="services-page__subtitle">
+    <Section className="py-4 sm:py-6 md:py-10">
+      <Container size="default" className="max-w-6xl">
+        {/* Header Section - 采用与 Projects 页面相似的样式 */}
+        <div className="flex flex-col items-center mb-6 sm:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">
+            Our Professional Services
+          </h1>
+          <p className="text-center text-gray-600 text-sm sm:text-base max-w-xl px-4 sm:px-0">
             Your trusted partner in Malaysian real estate. We provide comprehensive 
             property solutions tailored to your needs.
           </p>
         </div>
 
-        <div className="services-page__content">
+        {/* Services Grid - 使用与 Projects 相似的网格布局 */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
               {...service}
+              className="mx-auto w-full max-w-sm sm:max-w-none"
             />
           ))}
         </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 };
 

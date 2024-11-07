@@ -64,6 +64,8 @@
     height: var(--footer-height);
     background-color: var(--color-white);
     border-top: 1px solid var(--color-gray-100);
+    display: flex; // 添加flex布局
+    align-items: center; // 垂直居中
 
     @include sm {
       height: var(--footer-height-sm);
@@ -75,6 +77,30 @@
 
     @include lg {
       height: var(--footer-height-lg);
+    }
+  }
+
+  &__footer-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    padding: 0 var(--spacing-4);
+
+    p {
+      margin: 0;
+    }
+
+    @include sm {
+      font-size: var(--font-size-base);
+      padding: 0 var(--spacing-6);
+    }
+
+    @include md {
+      padding: 0 var(--spacing-8);
     }
   }
 

@@ -1,6 +1,6 @@
-// src/js/pages/contact.jsx
 import React, { useState } from 'react';
 import { Phone, Mail, Globe, Clock, Send } from 'lucide-react';
+import { Container, Section } from '../components/Layout';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,20 +17,22 @@ const Contact = () => {
   };
 
   return (
-    <div className="content-container">
-      <div className="contact-page">
-        <div className="contact-page__header">
-          <h1 className="contact-page__title">Contact Us</h1>
-          <p className="contact-page__subtitle">
+    <Section className="py-4 sm:py-6 md:py-10">
+      <Container size="default" className="max-w-6xl">
+        {/* Header Section */}
+        <div className="flex flex-col items-center mb-6 sm:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Contact Us</h1>
+          <p className="text-center text-gray-600 text-sm sm:text-base max-w-xl px-4 sm:px-0">
             Looking for your dream property in Malaysia? Our professional property consultants 
             are ready to assist you online with all your real estate needs.
           </p>
         </div>
 
-        <div className="contact-page__content">
-          {/* Contact Information */}
-          <div className="contact-card">
-            <div className="contact-info">
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr,1.5fr] gap-4 sm:gap-6">
+          {/* Contact Information Card */}
+          <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6">
+            <div className="flex flex-col gap-6">
               <div className="contact-info__item">
                 <div className="contact-info__icon">
                   <Phone className="icon" />
@@ -88,10 +90,10 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="contact-form">
+          {/* Contact Form Card */}
+          <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6">
             <form onSubmit={handleSubmit}>
-              <div className="form-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <div className="form-group">
                   <label htmlFor="name">Name *</label>
                   <input
@@ -144,7 +146,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="form-group">
+              <div className="form-group mb-6">
                 <label htmlFor="message">Message *</label>
                 <textarea
                   id="message"
@@ -163,8 +165,8 @@ const Contact = () => {
             </form>
           </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 };
 

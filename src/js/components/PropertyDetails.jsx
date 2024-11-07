@@ -1,6 +1,8 @@
+// src/js/components/PropertyDetails.jsx
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { properties } from '../data/properties';
+import { Container, Section } from '../components/Layout';
 import { CheckIcon, MessageCircle, X } from 'lucide-react';
 
 // ImageModal Component
@@ -37,12 +39,14 @@ const PropertyDetails = () => {
 
   if (!property) {
     return (
-      <div className="content-container">
-        <div className="text-center py-12">
-          <h2 className="text-2xl font-bold">Property not found</h2>
-          <p className="text-gray-600 mt-2">The property you're looking for doesn't exist.</p>
-        </div>
-      </div>
+      <Section>
+        <Container size="default">
+          <div className="text-center py-12">
+            <h2 className="text-2xl font-bold">Property not found</h2>
+            <p className="text-gray-600 mt-2">The property you're looking for doesn't exist.</p>
+          </div>
+        </Container>
+      </Section>
     );
   }
 
@@ -64,18 +68,48 @@ const PropertyDetails = () => {
     completionDate,
   } = property;
 
-  // 通用的图片容器类名
   const imageContainerClass = "relative overflow-hidden rounded-lg shadow-sm";
   const imageClass = "w-full h-[300px] object-cover hover:scale-105 transition-transform duration-300";
 
-  // 处理图片点击
   const handleImageClick = (image, alt) => {
     setSelectedImage({ image, alt });
   };
 
   return (
     <div className="property-details-page">
-      {/* Image Modal */}
+      {/* Fixed Enquiry Button */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50">
+        <a 
+          href={`https://wa.me/601133698121?text=I'm interested in ${name}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-green-600 text-white shadow-xl rounded-xl 
+                   hover:bg-green-500 hover:scale-105 hover:shadow-2xl 
+                   transform transition-all duration-300 group"
+        >
+          {/* 大图标 */}
+          <div className="p-4 md:p-5">
+            <MessageCircle className="w-7 h-7 md:w-8 md:h-8" />
+          </div>
+          {/* 默认显示文字 */}
+          <div className="pr-5 pl-1 hidden md:block">
+            <div className="text-lg font-semibold whitespace-nowrap">
+              Enquire Now
+            </div>
+            <div className="text-sm text-white/90">
+              Via WhatsApp
+            </div>
+          </div>
+        </a>
+
+        {/* 移动端提示文字 */}
+        <div className="absolute right-0 top-full mt-2 text-center w-full">
+          <span className="text-xs bg-white/90 text-gray-600 px-2 py-1 rounded-full shadow-sm md:hidden">
+            Enquire
+          </span>
+        </div>
+      </div>
+
       {selectedImage && (
         <ImageModal
           image={selectedImage.image}
@@ -84,205 +118,181 @@ const PropertyDetails = () => {
         />
       )}
 
-      {/* WhatsApp Button */}
-      <a href={`https://wa.me/601133698121?text=I'm interested in ${name}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed right-4 top-3/4 z-50 flex items-center bg-green-600 text-white rounded-full md:rounded-lg hover:bg-green-700 transition-colors shadow-lg"
-      >
-        <div className="p-4 md:p-3">
-          <MessageCircle className="w-8 h-8 md:w-6 md:h-6" />
-        </div>
-        <span className="hidden md:block pr-4">WhatsApp Enquiry</span>
-      </a>
-
-      {/* Top Info Section */}
-      <div className="content-container py-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <span className="text-gray-600">Developer</span>
-            <div className="font-medium mt-1">{developer}</div>
-          </div>
-          <div>
-            <span className="text-gray-600">Expected Completion</span>
-            <div className="font-medium mt-1">{completionDate || 'TBA'}</div>
-          </div>
-        </div>
+      {/* Hero Section with Full Width Image */}
+      <div className="w-full h-[50vh] relative overflow-hidden">
+        <img 
+          src={preview} 
+          alt={name}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
       </div>
 
-      {/* Main Image */}
-      <div className="content-container">
-        <div className={`${imageContainerClass} cursor-zoom-in`} onClick={() => handleImageClick(preview, name)}>
-          <img 
-            src={preview} 
-            alt={name}
-            className={imageClass}
-          />
-        </div>
-      </div>
-
-      {/* Property Info Section */}
-      <div className="content-container py-6">
-        {/* 基本信息 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">{name}</h1>
-            <p className="text-lg text-gray-600 mt-2">
-              {typeof location === 'string' ? location : location.description}
-            </p>
-            <div className="text-xl font-semibold text-primary mt-2">
-              From RM {price.toLocaleString()}
+      {/* Main Content */}
+      <Section className="py-8 md:py-12">
+        <Container size="default" className="max-w-6xl">
+          {/* Property Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-8 mb-12">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{name}</h1>
+              <p className="text-xl text-gray-600 mb-4">
+                {typeof location === 'string' ? location : location.description}
+              </p>
+              <div className="text-2xl font-semibold text-primary mb-6">
+                From RM {price.toLocaleString()}
+              </div>
+              <div className="prose max-w-none">
+                <p className="text-gray-600">{description}</p>
+              </div>
             </div>
-          </div>
-          <div className="mt-4 md:mt-0">
-            <h2 className="text-lg font-semibold mb-3">Description</h2>
-            <p className="text-gray-600">{description}</p>
-          </div>
-        </div>
 
-        {/* Property Details Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 bg-gray-50 p-4 rounded-lg">
-          <div>
-            <span className="text-gray-600 text-sm">Type</span>
-            <div className="font-medium">{type}</div>
-          </div>
-          <div>
-            <span className="text-gray-600 text-sm">Size</span>
-            <div className="font-medium">{size} sqft</div>
-          </div>
-          <div>
-            <span className="text-gray-600 text-sm">Bedrooms</span>
-            <div className="font-medium">{bedrooms}</div>
-          </div>
-          <div>
-            <span className="text-gray-600 text-sm">Bathrooms</span>
-            <div className="font-medium">{bathrooms}</div>
-          </div>
-          <div className="col-span-2 md:col-span-1">
-            <h3 className="text-gray-600 text-sm mb-2">Key Features</h3>
-            <div className="space-y-1">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-center text-sm">
-                  <CheckIcon className="w-4 h-4 text-green-500 mr-1" />
-                  <span>{feature}</span>
+            {/* Quick Info Card */}
+            <div className="bg-gray-50 rounded-xl p-6 h-fit">
+              <h2 className="text-xl font-semibold mb-6">Property Details</h2>
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Type</span>
+                  <span className="font-medium">{type}</span>
                 </div>
-              ))}
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Developer</span>
+                  <span className="font-medium">{developer}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Completion</span>
+                  <span className="font-medium">{completionDate}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Size</span>
+                  <span className="font-medium">{size} sqft</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Bedrooms</span>
+                  <span className="font-medium">{bedrooms}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Bathrooms</span>
+                  <span className="font-medium">{bathrooms}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Tabs Section */}
-      <div className="content-container">
-        <div className="border-b overflow-x-auto">
-          <nav className="flex gap-6 min-w-max">
-            {['overview', 'interior', 'floorplans', 'location'].map((tab) => (
-              <button
-                key={tab}
-                className={`pb-3 px-1 ${
-                  activeTab === tab
-                    ? 'border-b-2 border-primary text-primary'
-                    : 'text-gray-500'
-                }`}
-                onClick={() => setActiveTab(tab)}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
-            ))}
-          </nav>
-        </div>
-
-        <div className="py-6">
-          {activeTab === 'overview' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {facilities.map((facility) => (
-                <div key={facility.id}>
-                  <div 
-                    className={`${imageContainerClass} cursor-zoom-in`}
-                    onClick={() => handleImageClick(facility.image, facility.name)}
-                  >
-                    <img 
-                      src={facility.image} 
-                      alt={facility.name}
-                      className={imageClass}
-                    />
-                  </div>
-                  <h3 className="text-lg font-medium mt-4">{facility.name}</h3>
-                  <p className="text-gray-600 mt-2">{facility.description}</p>
-                </div>
+          {/* Tabs Navigation */}
+          <div className="border-b mb-8">
+            <nav className="flex gap-8 overflow-x-auto">
+              {['overview', 'interior', 'floorplans', 'location'].map((tab) => (
+                <button
+                  key={tab}
+                  className={`pb-4 px-1 font-medium whitespace-nowrap ${
+                    activeTab === tab
+                      ? 'border-b-2 border-primary text-primary'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
               ))}
-            </div>
-          )}
+            </nav>
+          </div>
 
-          {activeTab === 'interior' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {interior.map((room) => (
-                <div key={room.id}>
-                  <div 
-                    className={`${imageContainerClass} cursor-zoom-in`}
-                    onClick={() => handleImageClick(room.image, room.name)}
-                  >
-                    <img 
-                      src={room.image} 
-                      alt={room.name}
-                      className={imageClass}
-                    />
-                  </div>
-                  <h3 className="text-lg font-medium mt-4">{room.name}</h3>
-                  <p className="text-gray-600 mt-2">{room.description}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {activeTab === 'floorplans' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {floorPlans.map((plan) => (
-                <div key={plan.id} className="border rounded-lg overflow-hidden">
-                  <div className="p-4 bg-gray-50 flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div>
-                      <h3 className="font-medium">{plan.type}</h3>
-                      <p className="text-sm text-gray-600">
-                        {plan.bedrooms} Bedrooms • {plan.bathrooms} Bathrooms
-                      </p>
+          {/* Tab Content */}
+          <div className="py-4">
+            {activeTab === 'overview' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {facilities.map((facility) => (
+                  <div key={facility.id} className="space-y-4">
+                    <div 
+                      className={imageContainerClass + " cursor-pointer"}
+                      onClick={() => handleImageClick(facility.image, facility.name)}
+                    >
+                      <img 
+                        src={facility.image} 
+                        alt={facility.name}
+                        className={imageClass}
+                      />
                     </div>
-                    <span className="text-primary font-medium mt-2 md:mt-0">{plan.size}</span>
+                    <h3 className="text-xl font-semibold">{facility.name}</h3>
+                    <p className="text-gray-600">{facility.description}</p>
                   </div>
-                  <div 
-                    className="p-4 bg-white cursor-zoom-in"
-                    onClick={() => handleImageClick(plan.image, plan.type)}
-                  >
-                    <img 
-                      src={plan.image} 
-                      alt={plan.type}
-                      className="w-full h-[300px] object-contain rounded-lg"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
 
-          {activeTab === 'location' && location && typeof location === 'object' && (
-            <div className="grid grid-cols-1 gap-6">
-              <div 
-                className={`${imageContainerClass} cursor-zoom-in`}
-                onClick={() => handleImageClick(location.image, "Property Location")}
-              >
-                <img 
-                  src={location.image} 
-                  alt="Property Location"
-                  className={imageClass}
-                />
+            {activeTab === 'interior' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {interior.map((room) => (
+                  <div key={room.id} className="space-y-4">
+                    <div 
+                      className={imageContainerClass + " cursor-pointer"}
+                      onClick={() => handleImageClick(room.image, room.name)}
+                    >
+                      <img 
+                        src={room.image} 
+                        alt={room.name}
+                        className={imageClass}
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold">{room.name}</h3>
+                    <p className="text-gray-600">{room.description}</p>
+                  </div>
+                ))}
               </div>
+            )}
+
+            {activeTab === 'floorplans' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {floorPlans.map((plan) => (
+                  <div key={plan.id} className="bg-white rounded-xl overflow-hidden border">
+                    <div className="p-4 bg-gray-50 flex justify-between items-center">
+                      <div>
+                        <h3 className="font-medium">{plan.type}</h3>
+                        <p className="text-sm text-gray-600">
+                          {plan.bedrooms} Bedrooms • {plan.bathrooms} Bathrooms
+                        </p>
+                      </div>
+                      <span className="text-primary font-medium">{plan.size}</span>
+                    </div>
+                    <div 
+                      className="p-4 cursor-pointer"
+                      onClick={() => handleImageClick(plan.image, plan.type)}
+                    >
+                      <img 
+                        src={plan.image} 
+                        alt={plan.type}
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'location' && location && typeof location === 'object' && (
               <div>
-                <h3 className="text-lg font-medium mt-4">Location</h3>
-                <p className="text-gray-600 mt-2">{location.description}</p>
+                <div 
+                  className={imageContainerClass + " cursor-pointer"}
+                  onClick={() => handleImageClick(location.image, "Property Location")}
+                >
+                  <img 
+                    src={location.image} 
+                    alt="Property Location"
+                    className="w-full h-[400px] object-cover"
+                  />
+                </div>
+                <div className="mt-6">
+                  <h3 className="text-xl font-semibold mb-4">Location</h3>
+                  <p className="text-gray-600">{location.description}</p>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      </div>
+            )}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Bottom spacing for fixed button */}
+      <div className="h-24" aria-hidden="true"></div>
     </div>
   );
 };

@@ -1,166 +1,284 @@
-// src/styles/pages/_contact.scss
+@use '../abstracts' as *;
+
+// 页面整体布局
 .contact-page {
-  padding-top: var(--spacing-8);
-  
   &__header {
     text-align: center;
-    margin-bottom: var(--spacing-12);
+    margin-bottom: var(--spacing-6);
+    padding: 0 var(--spacing-4);
+
+    @include sm {
+      margin-bottom: var(--spacing-8);
+    }
+
+    @include lg {
+      margin-bottom: var(--spacing-10);
+    }
   }
   
   &__title {
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
     color: var(--color-text);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-2);
+
+    @include sm {
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacing-3);
+    }
+
+    @include lg {
+      font-size: var(--font-size-4xl);
+      margin-bottom: var(--spacing-4);
+    }
   }
   
   &__subtitle {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
     max-width: 36rem;
     margin: 0 auto;
+
+    @include lg {
+      font-size: var(--font-size-lg);
+    }
   }
   
   &__content {
     display: grid;
-    gap: var(--spacing-8);
+    gap: var(--spacing-6);
+    padding: 0 var(--spacing-4);
     
-    @media (min-width: 768px) {
+    @include sm {
+      padding: 0 var(--spacing-6);
+      gap: var(--spacing-8);
+    }
+    
+    @include lg {
       grid-template-columns: 1fr 1.5fr;
+      gap: var(--spacing-10);
+      max-width: var(--container-lg);
+      margin: 0 auto;
+      padding: 0 var(--spacing-8);
     }
   }
 }
 
-.contact-card {
-  background-color: var(--color-white);
-  border-radius: 1rem;
-  padding: var(--spacing-6);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
+// 联系信息部分
 .contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-6);
-  
   &__item {
     display: flex;
+    align-items: flex-start;
     gap: var(--spacing-4);
+    padding: var(--spacing-4);
+    transition: background-color 0.2s ease;
+    border-radius: 1rem;
+
+    &:hover {
+      background-color: var(--color-gray-50);
+    }
+
+    @include lg {
+      padding: var(--spacing-5);
+    }
   }
   
   &__icon {
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--color-primary-light);
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    background-color: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     
     .icon {
-      color: var(--color-primary);
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
+      color: var(--color-white);
+    }
+
+    @include lg {
+      width: 56px;
+      height: 56px;
+      
+      .icon {
+        width: 28px;
+        height: 28px;
+      }
     }
   }
   
   &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    
     h3 {
-      font-size: var(--font-size-base);
-      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-lg);
+      font-weight: 600;
       color: var(--color-text);
-      margin-bottom: var(--spacing-1);
+
+      @include lg {
+        font-size: var(--font-size-xl);
+      }
     }
     
     p {
-      color: var(--color-text-light);
-      margin-bottom: var(--spacing-1);
+      font-size: var(--font-size-base);
+      color: var(--color-text);
+      line-height: var(--line-height-relaxed);
+
+      @include lg {
+        font-size: var(--font-size-lg);
+      }
     }
   }
   
   &__link {
+    display: inline-block;
     color: var(--color-primary);
     text-decoration: none;
-    font-weight: var(--font-weight-medium);
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    margin-top: var(--spacing-1);
     
     &:hover {
       text-decoration: underline;
     }
+
+    @include lg {
+      font-size: var(--font-size-lg);
+    }
   }
 }
 
-.contact-form {
-  background-color: var(--color-white);
-  border-radius: 1rem;
-  padding: var(--spacing-6);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+// 表单部分
+.form-group {
+  margin-bottom: var(--spacing-6);
   
-  .form-grid {
-    display: grid;
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-6);
-    
-    @media (min-width: 640px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @include sm {
+    margin-bottom: var(--spacing-8);
   }
   
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2);
-    
-    label {
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-medium);
-      color: var(--color-text);
-    }
-    
-    input,
-    select,
-    textarea {
-      padding: var(--spacing-3);
-      border: 1px solid var(--color-gray-light);
-      border-radius: 0.5rem;
-      font-size: var(--font-size-base);
-      color: var(--color-text);
-      transition: border-color 0.2s;
-      
-      &:focus {
-        outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px var(--color-primary-light);
-      }
-      
-      &::placeholder {
-        color: var(--color-gray);
-      }
-    }
-    
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-  }
-  
-  .submit-button {
-    display: inline-flex;
-    margin-top: 15px;
-    align-items: center;
-    gap: var(--spacing-2);
-    padding: var(--spacing-3) var(--spacing-6);
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    border: none;
-    border-radius: 0.5rem;
+  label {
+    display: block;
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-medium);
-    cursor: pointer;
-    transition: background-color 0.2s;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-2);
+
+    @include lg {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-3);
+    }
+  }
+  
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: var(--spacing-4);
+    border: 1.5px solid var(--color-gray-200);
+    border-radius: 0.75rem;
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background-color: var(--color-white);
+    transition: all 0.2s ease;
     
     &:hover {
-      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary);
     }
+    
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+    
+    &::placeholder {
+      color: var(--color-text-light);
+    }
+
+    @include lg {
+      font-size: var(--font-size-lg);
+      padding: var(--spacing-5);
+    }
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-4) center;
+    background-size: 1.5em;
+    padding-right: var(--spacing-12);
+    cursor: pointer;
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+
+    @include lg {
+      min-height: 160px;
+    }
+  }
+}
+
+// 提交按钮
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 0.75rem;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @include sm {
+    width: auto;
+    min-width: 180px;
+  }
+
+  @include lg {
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-5) var(--spacing-8);
+    min-width: 200px;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+// 表单网格布局
+.form-grid {
+  display: grid;
+  gap: var(--spacing-6);
+  
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-8);
   }
 }

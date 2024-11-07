@@ -1,6 +1,7 @@
 .
 ├── .DS_Store
 ├── .gitignore
+├── Error.txt
 ├── README.md
 ├── index.html
 ├── myprophub_progress.txt
@@ -60,13 +61,18 @@
 │   ├── index.css
 │   ├── js
 │   │   ├── components
+│   │   │   ├── DSRCalculator.jsx
 │   │   │   ├── FilterSection.jsx
+│   │   │   ├── HomeLoanCalculator.jsx
 │   │   │   ├── ImageModal.jsx
+│   │   │   ├── Layout.jsx
 │   │   │   ├── PropertyCard.jsx
 │   │   │   ├── PropertyDetails.jsx
 │   │   │   ├── ServiceCard.jsx
 │   │   │   ├── navigation.jsx
 │   │   │   └── slider.js
+│   │   ├── constants
+│   │   │   └── dsrConfig
 │   │   ├── data
 │   │   │   └── properties.js
 │   │   ├── main.js
@@ -87,6 +93,7 @@
 │   │   └── services.html
 │   └── styles
 │       ├── abstracts
+│       │   ├── _colors.scss
 │       │   ├── _functions.scss
 │       │   ├── _index.scss
 │       │   ├── _mixins.scss
@@ -116,10 +123,9 @@
 │           ├── _contact.scss
 │           ├── _home.scss
 │           ├── _index.scss
-│           ├── _pages.scss
 │           ├── _projects.scss
 │           └── _services.scss
 ├── tailwind.config.js
 └── vite.config.js
 
-31 directories, 92 files
+32 directories, 97 files

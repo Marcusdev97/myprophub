@@ -1,0 +1,26 @@
+// js/constants/dsrConfig.js
+export const DSR_LIMITS = {
+  LOW_INCOME: {
+    max: 3000,
+    limit: 60
+  },
+  MEDIUM_INCOME: {
+    min: 3000,
+    max: 5000,
+    limit: 70
+  },
+  HIGH_INCOME: {
+    min: 5000,
+    limit: 80
+  }
+};
+
+export const DSR_MESSAGES = {
+  WITHIN_LIMIT: "Your DSR is within acceptable range for most banks.",
+  EXCEED_LIMIT: "Your DSR exceeds the recommended limit for your income bracket. Consider:",
+  RECOMMENDATIONS: [
+    "Joint loan application with a family member",
+    "Reducing existing commitments",
+    "Consulting with our loan specialists for professional guidance"
+  ]
+};

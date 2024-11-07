@@ -92,17 +92,18 @@ const ProjectsPage = () => {
   });
 
   return (
-    <Section className="py-4 sm:py-6 md:py-10">
-      <Container size="default" className="max-w-6xl">
-        {/* Header Section - 调整移动端间距 */}
-        <div className="flex flex-col items-center mb-6 sm:mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Property Listings</h1>
-          <p className="text-center text-gray-600 text-sm sm:text-base max-w-xl px-4 sm:px-0">{getSubtitleText()}</p>
-        </div>
+<Section className="py-4 sm:py-6 md:py-10">
+    {/* 使用默认容器宽度约束过滤器部分 */}
+    <Container size="default" className="max-w-6xl">
+      {/* Header Section */}
+      <div className="flex flex-col items-center mb-6 sm:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Property Listings</h1>
+        <p className="text-center text-gray-600 text-sm sm:text-base px-4 sm:px-0">{getSubtitleText()}</p>
+      </div>
 
-        {/* Filters Section - 优化移动端布局 */}
+        {/* Filters Section */}
         <div className="mb-6 sm:mb-8">
-          {/* Toggle Buttons - 调整按钮大小和间距 */}
+          {/* Toggle Buttons */}
           <div className="flex flex-col items-center gap-3 sm:gap-4 mb-6">
             {/* Primary Toggle */}
             <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-center">
@@ -127,7 +128,7 @@ const ProjectsPage = () => {
                 Rent Property
               </button>
             </div>
-
+  
             {/* Secondary Toggle */}
             {listingType === 'sale' && (
               <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-center">
@@ -154,7 +155,7 @@ const ProjectsPage = () => {
               </div>
             )}
           </div>
-
+  
           {/* Filter Controls */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             <FilterSection
@@ -177,31 +178,37 @@ const ProjectsPage = () => {
             />
           </div>
         </div>
-
-        {/* Properties Grid - 优化移动端卡片间距 */}
-        {filteredProperties.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+        </Container>
+  
+        {/* Properties Grid - 使用新的全宽容器 */}
+    {filteredProperties.length > 0 ? (
+      <Container size="fullWidth" className="max-w-[1800px]">
+        <div className="mx-auto px-4 md:px-8 lg:px-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
             {filteredProperties.map(property => (
               <PropertyCard
                 key={property.id}
                 property={property}
                 onClick={() => handlePropertyClick(property)}
-                className="mx-auto w-full max-w-sm sm:max-w-none" // 控制移动端卡片宽度
+                className="w-full"
               />
             ))}
           </div>
-        ) : (
-          <div className="flex justify-center px-4 sm:px-0">
-            <div className="text-center p-4 sm:p-6 bg-gray-50 rounded-lg max-w-lg w-full">
-              <p className="text-gray-600 text-sm sm:text-base">
-                No properties found matching your criteria. Please try adjusting your filters.
-              </p>
-            </div>
-          </div>
-        )}
+        </div>
       </Container>
-    </Section>
+    ) : (
+      <Container size="default" className="max-w-6xl">
+        <div className="flex justify-center px-4 sm:px-0">
+          <div className="text-center p-4 sm:p-6 bg-gray-50 rounded-lg max-w-lg w-full">
+            <p className="text-gray-600 text-sm sm:text-base">
+              No properties found matching your criteria. Please try adjusting your filters.
+            </p>
+          </div>
+        </div>
+      </Container>
+    )}
+  </Section>
   );
-};
+}
 
 export default ProjectsPage;
