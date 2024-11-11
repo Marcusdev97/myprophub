@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Bed, Bath, Square, ChevronRight } from 'lucide-react';
 
+
 const PropertyCard = ({ property, onClick }) => {
   const {
     preview,

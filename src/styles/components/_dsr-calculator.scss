@@ -1,0 +1,294 @@
+@use '../abstracts' as *;
+
+.dsr-calculator {
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+
+  &__container {
+    position: relative;
+    width: 100%;
+  }
+
+  // Form Section
+  &__form {
+    background-color: var(--color-white);
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-gray-200);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.8s ease-out;
+    
+    &--hidden {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    &-content {
+      padding: var(--spacing-4);
+      
+      @include md {
+        padding: var(--spacing-6);
+      }
+    }
+
+    &-group {
+      display: grid;
+      gap: var(--spacing-4);
+      
+      @include md {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  // Input Styles
+  &__input-group {
+    margin-bottom: var(--spacing-4);
+
+    label {
+      display: block;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--spacing-2);
+    }
+
+    &-wrapper {
+      position: relative;
+    }
+
+    &-prefix {
+      position: absolute;
+      left: var(--spacing-3);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-light);
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      padding: var(--spacing-3) var(--spacing-4);
+      padding-left: var(--spacing-12);
+      border: 1px solid var(--color-gray-200);
+      border-radius: 0.5rem;
+      font-size: var(--font-size-base);
+      transition: all 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+    }
+  }
+
+  // Results Section
+  &__results {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-gray-200);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.8s ease-out;
+    
+    &--hidden {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    &-content {
+      padding: var(--spacing-4);
+      
+      @include md {
+        padding: var(--spacing-6);
+      }
+    }
+  }
+
+  // Result Header
+  &__result-header {
+    background-color: var(--color-gray-50);
+    border-radius: 0.75rem;
+    padding: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+
+    &-title {
+      font-size: var(--font-size-base);
+      font-weight: 500;
+      color: var(--color-text);
+    }
+
+    &-value {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-1);
+      margin-top: var(--spacing-2);
+
+      .percentage {
+        font-size: var(--font-size-3xl);
+        font-weight: 700;
+        
+        &--danger {
+          color: var(--color-danger);
+        }
+        
+        &--success {
+          color: var(--color-success);
+        }
+      }
+
+      .income {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-light);
+      }
+    }
+  }
+
+  // Available Quota
+  &__available-quota {
+    margin-top: var(--spacing-2);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  // Status Indicator
+  &__status {
+    display: flex;
+    padding: var(--spacing-4);
+    border-radius: 0.75rem;
+    // margin-bottom: var(--spacing-6);
+    
+    &--success {
+      background-color: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--color-success);
+    }
+    
+    &--danger {
+      background-color: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--color-danger);
+    }
+  
+    &-message {
+      font-size: var(--font-size-sm);
+      color: var(--color-text); // 改为默认黑色文字
+      margin-bottom: 0px;
+    }
+  }
+  
+
+  // Analysis Section
+  &__analysis {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-6);
+    
+    @include md {
+      grid-template-columns: 3fr 9fr;
+      gap: var(--spacing-8);
+    }
+  }
+
+  // Chart
+  &__chart {
+    height: 250px;
+    width: 100%;
+    
+    @include md {
+      height: 300px;
+    }
+  }
+
+  // Breakdown
+  &__breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+
+    &-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: var(--spacing-3);
+      padding: var(--spacing-3);
+      background-color: var(--color-gray-50);
+      border-radius: 0.5rem;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--color-gray-100);
+      }
+
+      &-indicator {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 9999px;
+        flex-shrink: 0;
+      }
+
+      &-label {
+        font-size: var(--font-size-sm);
+        color: var(--color-text);
+      }
+
+      &-values {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+        
+        .amount {
+          font-weight: 600;
+          color: var(--color-text);
+          min-width: 90px;
+          text-align: right;
+        }
+
+        .percentage {
+          font-size: var(--font-size-xs);
+          color: var(--color-text-light);
+          background-color: var(--color-white);
+          padding: 0.25rem 0.5rem;
+          border-radius: 9999px;
+          min-width: 60px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  // Buttons
+  &__submit {
+    width: 100%;
+    padding: var(--spacing-4);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 0.5rem;
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--color-primary-dark);
+    }
+  }
+
+  &__recalculate {
+    margin-top: auto;
+    padding: var(--spacing-3) var(--spacing-4);
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-radius: 0.5rem;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--color-secondary-dark);
+    }
+  }
+}

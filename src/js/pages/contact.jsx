@@ -11,9 +11,58 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    
+    try {
+      const templateParams = {
+        to_email: 'marcuschin.flp@gmail.com',
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'Not provided',
+        subject: `New ${formData.subject} Inquiry from MyPropHub`,
+        message: formData.message,
+        service_type: formData.subject
+      };
+  
+      // Email template content
+      const emailContent = `
+        New Property Inquiry
+  
+        Service Required: ${formData.subject}
+        Name: ${formData.name}
+        Email: ${formData.email}
+        Phone: ${formData.phone || 'Not provided'}
+  
+        Message:
+        ${formData.message}
+  
+        This inquiry was sent from MyPropHub Contact Form.
+      `;
+  
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // 从EmailJS获取
+        'YOUR_TEMPLATE_ID', // 从EmailJS获取
+        templateParams,
+        'YOUR_PUBLIC_KEY' // 从EmailJS获取
+      );
+  
+      // 成功发送后清除表单
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+  
+      // 显示成功消息
+      alert('Thank you for your message. We will contact you soon!');
+  
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      alert('Sorry, there was an error sending your message. Please try again.');
+    }
   };
 
   return (

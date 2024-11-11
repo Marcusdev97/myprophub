@@ -1,105 +1,42 @@
-# MyPropHub Development Progress
+MyPropHub Development Progress
 ============================
+Last Updated: November 11, 2024
+Today's Achievements
 
-Last Updated: November 07, 2024
 
-## Current Phase: Calculator Implementation
--------------------------------------------
+✅ DSR Calculator Enhancement
+Restructured calculator layout with clear information hierarchy
+Implemented salary-based DSR calculation
+Added available monthly commitment calculation feature
+Created dynamic pie chart visualization
+Applied responsive 3:9 grid layout for analysis section
 
-### I. Latest Updates
-1. Added DSR Calculator with:
-   - Income-based DSR limits (60%, 70%, 80%)
-   - Monthly commitment analysis
-   - Pie chart visualization
-   - Responsive design
 
-2. Added Home Loan Calculator with:
-   - Loan amortization calculation
-   - Accumulated payment tracking
-   - Principal vs Interest visualization
-   - Down payment calculation
-   - Responsive design
+✅ Core Features Implementation
+jsxCopy// Key calculation logic
+const calculateAvailableQuota = (income, totalCommitments) => {
+  const dsrLimit = getDSRLimit(income);
+  const maxMonthlyCommitment = (income * dsrLimit) / 100;
+  return Math.max(0, maxMonthlyCommitment - totalCommitments);
+};
 
-3. Implemented Home Page Layout:
-   - Tab-based calculator switching
-   - Clean, modern UI
-   - Mobile responsive design
-   - Informative sections
+// DSR Status Component
+<div className={`dsr-calculator__status ${
+  results.exceededLimit ? 'dsr-calculator__status--danger' : 'dsr-calculator__status--success'
+}`}>
+  <p className="dsr-calculator__status-message">...</p>
+</div>
 
-## Current Implementation Status
-------------------------------
-1. ✅ Core Components
-   - Navigation
-   - Layout system
-   - Calculator components
-   - Responsive design
+✅ SCSS Integration
+Implemented BEM methodology in _dsrcalculator.scss
+Created responsive breakpoints for mobile-first design
+Enhanced component transitions and animations
+Maintained consistent color scheme using global variables
 
-2. ✅ Features Implemented
-   - Home Loan Calculator
-   - DSR Calculator
-   - Responsive layouts
-   - Data visualization
 
-3. ✅ Code Structure
-   - React + Vite setup
-   - SCSS architecture
-   - Component organization
-   - Utility functions
 
-## Next Priority Tasks
---------------------
-1. Additional Features
-   - [ ] Add report generation
-   - [ ] Implement calculator result saving
-   - [ ] Add more loan types
-   - [ ] Enhance visualization options
+File Structure (based on FileStructural.txt)
+Will be provided during review.
 
-2. UI/UX Improvements
-   - [ ] Add loading states
-   - [ ] Enhance form validation
-   - [ ] Improve error handling
-   - [ ] Add tooltips and help text
-
-3. Performance Optimization
-   - [ ] Optimize calculations
-   - [ ] Improve chart rendering
-   - [ ] Add caching where appropriate
-   - [ ] Optimize bundle size
-
-## Recent Changes
----------------
-1. Calculator Features:
-   - Updated DSR calculation logic
-   - Added income-based DSR limits
-   - Improved chart visualizations
-   - Enhanced user feedback
-
-2. Design Improvements:
-   - Implemented tab-based navigation
-   - Added responsive layouts
-   - Enhanced visual feedback
-   - Improved form handling
-
-## Technical Notes
-----------------
-1. Calculator Logic:
-   ```javascript
-   // DSR Limits
-   LOW_INCOME: max 3000 = 60%
-   MEDIUM_INCOME: 3000-5000 = 70%
-   HIGH_INCOME: above 5000 = 80%
-   ```
-
-2. Data Visualization:
-   - Using Recharts for charts
-   - Pie charts for commitment breakdown
-   - Line charts for loan amortization
-   - Responsive chart containers
-
-## Next Steps
-------------
-1. [ ] Add more calculator features
-2. [ ] Enhance error handling
-3. [ ] Improve performance
-4. [ ] Add user guidance
-5. [ ] Implement data persistence
+Next Steps (November 12, 2024)
+Adding more data for display purpose, will show the previous data how to insert.

@@ -14,20 +14,20 @@ const HomePage = () => {
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Loan Calculators
+              MyPropHub
             </h1>
             <p className="text-lg text-gray-600">
-              Calculate your loan eligibility, monthly repayments, and DSR with our comprehensive calculators.
+              First Step to Home, Simple as One Click
             </p>
           </div>
         </Container>
       </Section>
 
       {/* Calculators Section */}
-      <Section className="bg-gray-50">
+      <Section className="bg-gray-50 min-h-0">
         <Container>
           <div className="max-w-6xl mx-auto">
-            {/* Custom Tabs */}
+           {/* Custom Tabs */}
             <div className="flex mb-8 bg-white rounded-lg p-2 shadow-sm">
               <button
                 onClick={() => setActiveTab('loan')}
@@ -52,7 +52,7 @@ const HomePage = () => {
             </div>
 
             {/* Calculator Content */}
-            <div className="transition-all duration-300">
+            <div className="transition-all duration-300 max-h-[700px] overflow-y-auto">
               {activeTab === 'loan' && <HomeLoanCalculator />}
               {activeTab === 'dsr' && <DSRCalculator />}
             </div>

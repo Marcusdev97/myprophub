@@ -56,7 +56,7 @@ const calculateLoanSchedule = (propertyPrice, downPaymentPercent, interestRate, 
 
 const HomeLoanCalculator = () => {
   const [formData, setFormData] = useState({
-    propertyPrice: '',
+    propertyPrice: '400,000.00',
     downPayment: '10',
     interestRate: '4.25',
     tenure: '35'
@@ -240,7 +240,7 @@ const HomeLoanCalculator = () => {
                       stroke="#9ca3af"
                     />
                     <YAxis 
-                      tickFormatter={(value) => `${value/1000}k`}
+                      tickFormatter={(value) => `${value/1000}`}
                       stroke="#9ca3af"
                     />
                     <Tooltip
