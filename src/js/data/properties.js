@@ -115,7 +115,7 @@ export const properties = [
     tenure: "Freehold",
     bedrooms: "3-4",
     bathrooms: "2",
-    size: "958-1324 sqft",
+    size: "958-1324",
     monthlyRepayment: 2020,
     completionDate: 2025,
     description: "Sanderling Lakefront in Cyberjaya offers spacious units with modern amenities, excellent connectivity, and a promotional package for early buyers.",
@@ -216,6 +216,390 @@ export const properties = [
       totalUnits: 606,
       listingId: "42475775",
       propertyType: "Condominium For Sale"
+    }
+  },
+  {
+    id: 3,
+    name: "Grand Damansara",
+    developer: "Grand Global",
+    location: "Jalan Anggerik, Off Lebuhraya Sprint, 47400 Petaling Jaya, Selangor",
+    tagline: "Lifestyle Suites & Serviced Apartments in Petaling Jaya",
+    price: 243000,
+    monthlyRent: null,
+    type: "Serviced Apartment",
+    category: "new",
+    listingType: "sale",
+    projectStage: "New launch",
+    tenure: "Leasehold", 
+    bedrooms: "Studio to 3",
+    bathrooms: "1 - 2",
+    size: "273 - 936",
+    monthlyRepayment: 1043, // 基于价格243000计算的大约月供
+    completionDate: 2027,
+    description: "Grand Damansara is a new high-rise development comprising two blocks of lifestyle suites and serviced apartments with retail units on its ground and first floor.",
+    preview: "/src/assets/images/properties/Grand-Damansara/previews/previews.jpg",
+    features: [
+        "Excellent connectivity to LRT stations",
+        "Proximity to major highways", 
+        "4-tier security system",
+        "Retail units on ground floor"
+    ],
+    facilities: [
+        {
+            id: "fac-1",
+            name: "Hammock Garden",
+            image: "/src/assets/images/properties/Grand-Damansara/facilities/hammock.webp",
+            description: "Relaxing hammock garden area for residents"
+        },
+        {
+            id: "fac-2", 
+            name: "Jacuzzi Pool",
+            image: "/src/assets/images/properties/Grand-Damansara/facilities/jacuzzi.webp",
+            description: "Luxury jacuzzi pool for relaxation"
+        },
+        {
+            id: "fac-3",
+            name: "Swimming Pool",
+            image: "/src/assets/images/properties/Grand-Damansara/facilities/overall-swimming-pool.webp",
+            description: "Grand swimming pool with city view"
+        },
+        {
+            id: "fac-4",
+            name: "Resort Facilities",
+            image: "/src/assets/images/properties/Grand-Damansara/facilities/resort-facilities-design.jpg", 
+            description: "Resort-style facilities for residents"
+        }
+    ],
+    floorPlans: [
+        {
+            id: "fp-1",
+            type: "Type A",
+            size: "273 sqft",
+            bedrooms: "Studio",
+            bathrooms: "1",
+            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-a-273sf.jpg"
+        },
+        {
+            id: "fp-2", 
+            type: "Type B (Dual Key)",
+            size: "469 sqft",
+            bedrooms: "1+1",
+            bathrooms: "2",
+            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-b-469sf-dualkey.png"
+        },
+        {
+            id: "fp-3",
+            type: "Type C",
+            size: "471 sqft", 
+            bedrooms: "1",
+            bathrooms: "1",
+            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-c-471sf.jpg"
+        },
+        {
+            id: "fp-4",
+            type: "Type D",
+            size: "686 sqft",
+            bedrooms: "2",
+            bathrooms: "2",
+            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-d-686sf.webp"
+        },
+        {
+            id: "fp-5",
+            type: "Type E",
+            size: "916 sqft",
+            bedrooms: "3",
+            bathrooms: "2",
+            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-e-916sf.webp"
+        }
+    ],
+    interior: [
+        {
+            id: "int-1",
+            name: "Living Room",
+            image: "/src/assets/images/properties/Grand-Damansara/interior/living-room.jpg",
+            description: "Spacious and modern living room design"
+        },
+        {
+            id: "int-2",
+            name: "Studio with Bathroom",
+            image: "/src/assets/images/properties/Grand-Damansara/interior/studio-with-bathroom.jpg",
+            description: "Efficient studio layout with attached bathroom"
+        },
+        {
+            id: "int-3",
+            name: "Studio Unit",
+            image: "/src/assets/images/properties/Grand-Damansara/interior/studio.jpg",
+            description: "Contemporary studio unit design"
+        }
+    ],
+    location: {
+        image: "/src/assets/images/properties/Grand-Damansara/location/location.png",
+        description: "Strategic location in Petaling Jaya"
+    },
+    locationHighlight: {
+        image: "/src/assets/images/properties/Grand-Damansara/location/walkable-500m-to-lrt.jpg",
+        description: "Just 500m walking distance to LRT station"
+    },
+    additionalInfo: {
+        totalUnits: 981,
+        listingId: "GD2023PJ",
+        propertyType: "Mix Development"
+    }
+  },
+  {
+    id: 4,
+    name: "Skyline Embassy",
+    developer: "TsLaw Group",
+    location: "Jalan Ampang, 55000, Kuala Lumpur",
+    tagline: "An Iconic Address in the Heart of Kuala Lumpur",
+    price: 680000,
+    monthlyRent: null,
+    type: "Serviced Apartment",
+    category: "new",
+    listingType: "sale",
+    projectStage: "New launch",
+    tenure: "Freehold",
+    bedrooms: "1 to 3",
+    bathrooms: "1 - 2",
+    size: "551 - 1,005",
+    monthlyRepayment: 2920, // 基于价格680000计算的大约月供
+    completionDate: 2028,
+    description: "Skyline Embassy is an exclusive residential enclave that redefines luxury living along Kuala Lumpur's prestigious Embassy Row, featuring three magnificent towers with meticulously crafted units and world-class facilities.",
+    preview: "/src/assets/images/properties/Skyline-Embassy/previews/preview.jpg",
+    features: [
+        "Prime location near embassies and major landmarks",
+        "High ceilings and spacious layouts",
+        "Infinity pool with panoramic city views",
+        "24-hour security and concierge services"
+    ],
+    facilities: [
+        {
+            id: "fac-1",
+            name: "Project Overview",
+            image: "/src/assets/images/properties/Skyline-Embassy/facilities/overview.png",
+            description: "Overall development perspective"
+        },
+        {
+            id: "fac-2",
+            name: "Rooftop Swimming Pool",
+            image: "/src/assets/images/properties/Skyline-Embassy/facilities/rooftop-swimming-pool.jpg",
+            description: "Infinity pool with panoramic city views"
+        },
+        {
+            id: "fac-3",
+            name: "Sky Dining",
+            image: "/src/assets/images/properties/Skyline-Embassy/facilities/sky-dinning.jpg",
+            description: "Exclusive sky dining area for residents"
+        },
+        {
+            id: "fac-4",
+            name: "Theater Room",
+            image: "/src/assets/images/properties/Skyline-Embassy/facilities/theater-room.jpg",
+            description: "Private theater room for residents"
+        }
+    ],
+    floorPlans: [
+        {
+            id: "fp-1",
+            type: "Type A",
+            size: "551 sqft",
+            bedrooms: 1,
+            bathrooms: 1,
+            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-a-551sf.png"
+        },
+        {
+            id: "fp-2",
+            type: "Type B",
+            size: "710 sqft",
+            bedrooms: 2,
+            bathrooms: 2,
+            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-b-710sf.png"
+        },
+        {
+            id: "fp-3",
+            type: "Type C (Dual Key)",
+            size: "841 sqft",
+            bedrooms: "2+1",
+            bathrooms: 2,
+            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-c-841sf-dualkey.png"
+        },
+        {
+            id: "fp-4",
+            type: "Type D",
+            size: "853 sqft",
+            bedrooms: 3,
+            bathrooms: 2,
+            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-d-853sf.png"
+        },
+        {
+            id: "fp-5",
+            type: "Type E",
+            size: "1005 sqft",
+            bedrooms: 3,
+            bathrooms: 2,
+            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-e-1005sf.png"
+        }
+    ],
+    interior: [
+        {
+            id: "int-1",
+            name: "Dual Key Studio",
+            image: "/src/assets/images/properties/Skyline-Embassy/interior/dual-key-studio.png",
+            description: "Efficient dual key studio layout"
+        },
+        {
+            id: "int-2",
+            name: "Living Room",
+            image: "/src/assets/images/properties/Skyline-Embassy/interior/living-room.png",
+            description: "Spacious living room with modern design"
+        },
+        {
+            id: "int-3",
+            name: "Master Bathroom",
+            image: "/src/assets/images/properties/Skyline-Embassy/interior/master-bathroom.png",
+            description: "Luxurious master bathroom"
+        },
+        {
+            id: "int-4",
+            name: "Master Room",
+            image: "/src/assets/images/properties/Skyline-Embassy/interior/master-room.png",
+            description: "Elegant master bedroom"
+        }
+    ],
+    location: {
+        image: "/src/assets/images/properties/Skyline-Embassy/location/location.jpg",
+        description: "Prime location in Kuala Lumpur's Embassy Row"
+    },
+    additionalInfo: {
+        totalUnits: 1296,
+        listingId: "SE2023KL",
+        propertyType: "Serviced Apartment"
+    }
+  },
+  {
+    id: 5,
+    name: "M Azura",
+    developer: "Mah Sing Group Berhad",
+    location: "Setapak, Kuala Lumpur",
+    tagline: "Affordable luxury in Setapak",
+    price: 378000,
+    monthlyRent: null,
+    type: "Service Residence",
+    category: "new",
+    listingType: "sale",
+    projectStage: "New launch",
+    tenure: "Leasehold",
+    bedrooms: "2-4",
+    bathrooms: "2-3",
+    size: "700-1000",
+    monthlyRepayment: 1623, // 基于价格378000计算的大约月供
+    completionDate: 2028,
+    description: "M Azura offers a modern living experience with extensive amenities and excellent connectivity, designed for urban affordability.",
+    preview: "/src/assets/images/properties/M-Azura/previews/preview.jpg",
+    
+    features: [
+        "Strategic Location",
+        "Modern Design",
+        "Security System",
+        "Quality Finishes",
+        "Green Features (GreenRE Silver Provisional Certification)"
+    ],
+    
+    facilities: [
+        {
+            id: "fac-1",
+            name: "Garden",
+            image: "/src/assets/images/properties/M-Azura/facilities/garden.jpg",
+            description: "Landscaped garden for residents"
+        },
+        {
+            id: "fac-2",
+            name: "KL City View",
+            image: "/src/assets/images/properties/M-Azura/facilities/kl-city-view.jpg",
+            description: "Breathtaking view of Kuala Lumpur city"
+        },
+        {
+            id: "fac-3",
+            name: "Overview",
+            image: "/src/assets/images/properties/M-Azura/facilities/overview.jpg",
+            description: "Overall development perspective"
+        },
+        {
+            id: "fac-4",
+            name: "Swimming Pool",
+            image: "/src/assets/images/properties/M-Azura/facilities/swimming-pool.jpg",
+            description: "Luxury swimming pool with city view"
+        }
+    ],
+    
+    floorPlans: [
+        {
+            id: "fp-1",
+            type: "Type A",
+            size: "700 sqft",
+            bedrooms: 2,
+            bathrooms: 2,
+            image: "/src/assets/images/properties/M-Azura/floor-plans/type-a-700sf.jpg"
+        },
+        {
+            id: "fp-2",
+            type: "Type B",
+            size: "850 sqft",
+            bedrooms: 3,
+            bathrooms: 2,
+            image: "/src/assets/images/properties/M-Azura/floor-plans/type-b-850sf.jpg"
+        },
+        {
+            id: "fp-3",
+            type: "Type C",
+            size: "1000 sqft",
+            bedrooms: 4,
+            bathrooms: 3,
+            image: "/src/assets/images/properties/M-Azura/floor-plans/type-c-1000sf.jpg"
+        }
+    ],
+    
+    interior: [ // 注意：这里修正了属性名从 interiorFeatures 到 interior
+        {
+            id: "int-1",
+            name: "Dining Area",
+            image: "/src/assets/images/properties/M-Azura/interior/dinning.jpg",
+            description: "Modern dining area design"
+        },
+        {
+            id: "int-2",
+            name: "Kitchen",
+            image: "/src/assets/images/properties/M-Azura/interior/kitchen.jpg",
+            description: "Contemporary kitchen layout"
+        },
+        {
+            id: "int-3",
+            name: "Living Room",
+            image: "/src/assets/images/properties/M-Azura/interior/living.jpg",
+            description: "Spacious living area"
+        },
+        {
+            id: "int-4",
+            name: "Master Bedroom",
+            image: "/src/assets/images/properties/M-Azura/interior/master-room.jpg",
+            description: "Comfortable master bedroom"
+        }
+    ],
+    
+    location: { // 添加了 location 对象
+        image: "/src/assets/images/properties/M-Azura/location/location.png",
+        description: "Strategic location in Setapak, Kuala Lumpur"
+    },
+    
+    additionalInfo: {
+        totalUnits: 1140,
+        listingId: "39715938",
+        propertyType: "Service Residence For Sale"
+    },
+    
+    accessibilityDetails: {
+        publicTransport: ["Sri Rampai LRT Station", "Wangsa Maju LRT Station"],
+        highways: ["DUKE Highway", "MEX Highway"]
     }
   }
 ];

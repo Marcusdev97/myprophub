@@ -40,3 +40,15 @@ Will be provided during review.
 
 Next Steps (November 12, 2024)
 Adding more data for display purpose, will show the previous data how to insert.
+
+Website Deployment :
+Prepare build configuration
+Set up deployment environment
+Configure domain settings
+Test deployed version
+
+Development Focus:
+Integrate existing property data
+Update contact information
+Prepare for deployment
+Final testing and optimization

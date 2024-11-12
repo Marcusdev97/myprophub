@@ -18,6 +18,33 @@
 │   │       ├── .DS_Store
 │   │       └── properties
 │   │           ├── .DS_Store
+│   │           ├── Grand-Damansara
+│   │           │   ├── facilities
+│   │           │   │   ├── hammock.webp
+│   │           │   │   ├── jacuzzi.webp
+│   │           │   │   ├── overall-swimming-pool.webp
+│   │           │   │   └── resort-facilities-design.jpg
+│   │           │   ├── floor-plans
+│   │           │   │   ├── type-a-273sf.jpg
+│   │           │   │   ├── type-b-469sf-dualkey.png
+│   │           │   │   ├── type-c-471sf.jpg
+│   │           │   │   ├── type-d-686sf.webp
+│   │           │   │   └── type-e-916sf.webp
+│   │           │   ├── interior
+│   │           │   │   ├── living-room.jpg
+│   │           │   │   ├── studio-with-bathroom.jpg
+│   │           │   │   └── studio.jpg
+│   │           │   ├── location
+│   │           │   │   ├── location.png
+│   │           │   │   └── walkable-500m-to-lrt.jpg
+│   │           │   └── previews
+│   │           │       └── previews.jpg
+│   │           ├── M-Azura
+│   │           │   ├── facilities
+│   │           │   ├── floor-plans
+│   │           │   ├── interior
+│   │           │   ├── location
+│   │           │   └── previews
 │   │           ├── M-Terra
 │   │           │   ├── facilities
 │   │           │   │   ├── overview.jpg
@@ -35,31 +62,33 @@
 │   │           │   │   └── location.jpg
 │   │           │   └── previews
 │   │           │       └── condo-preview.jpg
-│   │           └── Sanderling
-│   │               ├── .DS_Store
-│   │               ├── facilities
-│   │               │   ├── gym.jpg
-│   │               │   ├── jogging-track.jpg
-│   │               │   ├── maze-garden.jpg
-│   │               │   └── sky-swimming-pool.jpeg
-│   │               ├── floor-plans
-│   │               │   ├── .DS_Store
-│   │               │   ├── type-a.png
-│   │               │   └── type-b.jpg
-│   │               ├── interior
-│   │               │   ├── balcony.jpg
-│   │               │   ├── kitchen-area.jpg
-│   │               │   ├── living-room.jpeg
-│   │               │   ├── master-studio-room.jpg
-│   │               │   ├── second-room.jpg
-│   │               │   └── small-room.jpg
-│   │               ├── location
-│   │               │   ├── .DS_Store
-│   │               │   └── location.png
-│   │               └── previews
-│   │                   └── condo-preview.jpg
+│   │           ├── Sanderling
+│   │           │   ├── .DS_Store
+│   │           │   ├── facilities
+│   │           │   │   ├── gym.jpg
+│   │           │   │   ├── jogging-track.jpg
+│   │           │   │   ├── maze-garden.jpg
+│   │           │   │   └── sky-swimming-pool.jpeg
+│   │           │   ├── floor-plans
+│   │           │   │   ├── .DS_Store
+│   │           │   │   ├── type-a.png
+│   │           │   │   └── type-b.jpg
+│   │           │   ├── interior
+│   │           │   │   ├── balcony.jpg
+│   │           │   │   ├── kitchen-area.jpg
+│   │           │   │   ├── living-room.jpeg
+│   │           │   │   ├── master-studio-room.jpg
+│   │           │   │   ├── second-room.jpg
+│   │           │   │   └── small-room.jpg
+│   │           │   ├── location
+│   │           │   │   ├── .DS_Store
+│   │           │   │   └── location.png
+│   │           │   └── previews
+│   │           │       └── condo-preview.jpg
+│   │           └── Skyline-Embassy
 │   ├── index.css
 │   ├── js
+│   │   ├── .DS_Store
 │   │   ├── components
 │   │   │   ├── DSRCalculator.jsx
 │   │   │   ├── FilterSection.jsx
@@ -106,6 +135,7 @@
 │       ├── components
 │       │   ├── _buttons.scss
 │       │   ├── _cards.scss
+│       │   ├── _dsr-calculator.scss
 │       │   ├── _filter-section.scss
 │       │   ├── _index.scss
 │       │   ├── _navigation.scss
@@ -128,4 +158,4 @@
 ├── tailwind.config.js
 └── vite.config.js
 
-32 directories, 97 files
+45 directories, 114 files
