@@ -19,7 +19,7 @@ export const properties = [
     monthlyRepayment: 1649,
     completionDate: 2028,
     description: "M Terra in Puchong offers affordable luxury living with modern amenities and excellent connectivity.",
-    preview: "/src/assets/images/properties/M-Terra/previews/condo-preview.jpg",
+    preview: "/images/properties/M-Terra/previews/condo-preview.jpg",
     features: [
       "Strategic location",
       "Modern design",
@@ -30,13 +30,13 @@ export const properties = [
       {
         id: "fac-1",
         name: "Overview",
-        image: "/src/assets/images/properties/M-Terra/facilities/overview.jpg",
+        image: "/images/properties/M-Terra/facilities/overview.jpg",
         description: "Property Overview"
       },
       {
         id: "fac-2",
         name: "Swimming Pool",
-        image: "/src/assets/images/properties/M-Terra/facilities/swimming-pool.jpg",
+        image: "/images/properties/M-Terra/facilities/swimming-pool.jpg",
         description: "Luxury swimming pool for residents"
       }
     ],
@@ -47,7 +47,7 @@ export const properties = [
         size: "850 sqft",
         bedrooms: 3,
         bathrooms: 2,
-        image: "/src/assets/images/properties/M-Terra/floor-plans/type-b.png"
+        image: "/images/properties/M-Terra/floor-plans/type-b.png"
       },
       {
         id: "fp-3",
@@ -55,43 +55,43 @@ export const properties = [
         size: "1023 sqft",
         bedrooms: 3,
         bathrooms: 2,
-        image: "/src/assets/images/properties/M-Terra/floor-plans/type-c.png"
+        image: "/images/properties/M-Terra/floor-plans/type-c.png"
       }
     ],
     interior: [
       {
         id: "int-1",
         name: "Bathroom",
-        image: "/src/assets/images/properties/M-Terra/interior/bathroom.png",
+        image: "/images/properties/M-Terra/interior/bathroom.png",
         description: "Modern bathroom design"
       },
       {
         id: "int-2",
         name: "Kitchen",
-        image: "/src/assets/images/properties/M-Terra/interior/kitchen.png",
+        image: "/images/properties/M-Terra/interior/kitchen.png",
         description: "Spacious kitchen layout"
       },
       {
         id: "int-3",
         name: "Living Room",
-        image: "/src/assets/images/properties/M-Terra/interior/livingroom.png",
+        image: "/images/properties/M-Terra/interior/livingroom.png",
         description: "Contemporary living space"
       },
       {
         id: "int-4",
         name: "Master Room",
-        image: "/src/assets/images/properties/M-Terra/interior/masterroom.png",
+        image: "/images/properties/M-Terra/interior/masterroom.png",
         description: "Comfortable master bedroom"
       },
       {
         id: "int-5",
         name: "Second Room",
-        image: "/src/assets/images/properties/M-Terra/interior/secondroom.png",
+        image: "/images/properties/M-Terra/interior/secondroom.png",
         description: "Cozy second bedroom"
       }
     ],
     location: {
-      image: "/src/assets/images/properties/M-Terra/location/location.jpg",
+      image: "/images/properties/M-Terra/location/location.jpg",
       description: "Strategic location in Puchong"
     },
     additionalInfo: {
@@ -119,7 +119,7 @@ export const properties = [
     monthlyRepayment: 2020,
     completionDate: 2025,
     description: "Sanderling Lakefront in Cyberjaya offers spacious units with modern amenities, excellent connectivity, and a promotional package for early buyers.",
-    preview: "/src/assets/images/properties/Sanderling/previews/condo-preview.jpg",
+    preview: "/images/properties/Sanderling/previews/condo-preview.jpg",
     features: [
       "RM500 Booking Fee Only",
       "Free S&P Legal & Loan Agreement Fees",
@@ -130,25 +130,25 @@ export const properties = [
       {
         id: "fac-1",
         name: "Gym",
-        image: "/src/assets/images/properties/Sanderling/facilities/gym.jpg",
+        image: "/images/properties/Sanderling/facilities/gym.jpg",
         description: "Modern gymnasium equipped with latest fitness equipment"
       },
       {
         id: "fac-2",
         name: "Jogging Track",
-        image: "/src/assets/images/properties/Sanderling/facilities/jogging-track.jpg",
+        image: "/images/properties/Sanderling/facilities/jogging-track.jpg",
         description: "Dedicated jogging track for residents"
       },
       {
         id: "fac-3",
         name: "Maze Garden",
-        image: "/src/assets/images/properties/Sanderling/facilities/maze-garden.jpg",
+        image: "/images/properties/Sanderling/facilities/maze-garden.jpg",
         description: "Beautiful maze garden for relaxation"
       },
       {
         id: "fac-4",
         name: "Sky Swimming Pool",
-        image: "/src/assets/images/properties/Sanderling/facilities/sky-swimming-pool.jpeg",
+        image: "/images/properties/Sanderling/facilities/sky-swimming-pool.jpeg",
         description: "Luxurious sky pool with panoramic views"
       }
     ],
@@ -159,7 +159,7 @@ export const properties = [
         size: "958 sqft",
         bedrooms: 3,
         bathrooms: 2,
-        image: "/src/assets/images/properties/Sanderling/floor-plans/type-a.png"
+        image: "/images/properties/Sanderling/floor-plans/type-a.png"
       },
       {
         id: "fp-2",
@@ -167,49 +167,49 @@ export const properties = [
         size: "1711 sqft",
         bedrooms: 4,
         bathrooms: 2,
-        image: "/src/assets/images/properties/Sanderling/floor-plans/type-b.jpg"
+        image: "/images/properties/Sanderling/floor-plans/type-b.jpg"
       }
     ],
     interior: [
       {
         id: "int-1",
         name: "Balcony",
-        image: "/src/assets/images/properties/Sanderling/interior/balcony.jpg",
+        image: "/images/properties/Sanderling/interior/balcony.jpg",
         description: "Spacious balcony with scenic views"
       },
       {
         id: "int-2",
         name: "Kitchen Area",
-        image: "/src/assets/images/properties/Sanderling/interior/kitchen-area.jpg",
+        image: "/images/properties/Sanderling/interior/kitchen-area.jpg",
         description: "Modern kitchen with premium finishes"
       },
       {
         id: "int-3",
         name: "Living Room",
-        image: "/src/assets/images/properties/Sanderling/interior/living-room.jpeg",
+        image: "/images/properties/Sanderling/interior/living-room.jpeg",
         description: "Contemporary living space design"
       },
       {
         id: "int-4",
         name: "Master Studio Room",
-        image: "/src/assets/images/properties/Sanderling/interior/master-studio-room.jpg",
+        image: "/images/properties/Sanderling/interior/master-studio-room.jpg",
         description: "Luxurious master bedroom"
       },
       {
         id: "int-5",
         name: "Second Room",
-        image: "/src/assets/images/properties/Sanderling/interior/second-room.jpg",
+        image: "/images/properties/Sanderling/interior/second-room.jpg",
         description: "Comfortable second bedroom"
       },
       {
         id: "int-6",
         name: "Small Room",
-        image: "/src/assets/images/properties/Sanderling/interior/small-room.jpg",
+        image: "/images/properties/Sanderling/interior/small-room.jpg",
         description: "Cozy small bedroom"
       }
     ],
     location: {
-      image: "/src/assets/images/properties/Sanderling/location/location.png",
+      image: "/images/properties/Sanderling/location/location.png",
       description: "Strategic location in Cyberjaya"
     },
     additionalInfo: {
@@ -237,7 +237,7 @@ export const properties = [
     monthlyRepayment: 1043, // 基于价格243000计算的大约月供
     completionDate: 2027,
     description: "Grand Damansara is a new high-rise development comprising two blocks of lifestyle suites and serviced apartments with retail units on its ground and first floor.",
-    preview: "/src/assets/images/properties/Grand-Damansara/previews/previews.jpg",
+    preview: "/images/properties/Grand-Damansara/previews/previews.jpg",
     features: [
         "Excellent connectivity to LRT stations",
         "Proximity to major highways", 
@@ -248,25 +248,25 @@ export const properties = [
         {
             id: "fac-1",
             name: "Hammock Garden",
-            image: "/src/assets/images/properties/Grand-Damansara/facilities/hammock.webp",
+            image: "/images/properties/Grand-Damansara/facilities/hammock.webp",
             description: "Relaxing hammock garden area for residents"
         },
         {
             id: "fac-2", 
             name: "Jacuzzi Pool",
-            image: "/src/assets/images/properties/Grand-Damansara/facilities/jacuzzi.webp",
+            image: "/images/properties/Grand-Damansara/facilities/jacuzzi.webp",
             description: "Luxury jacuzzi pool for relaxation"
         },
         {
             id: "fac-3",
             name: "Swimming Pool",
-            image: "/src/assets/images/properties/Grand-Damansara/facilities/overall-swimming-pool.webp",
+            image: "/images/properties/Grand-Damansara/facilities/overall-swimming-pool.webp",
             description: "Grand swimming pool with city view"
         },
         {
             id: "fac-4",
             name: "Resort Facilities",
-            image: "/src/assets/images/properties/Grand-Damansara/facilities/resort-facilities-design.jpg", 
+            image: "/images/properties/Grand-Damansara/facilities/resort-facilities-design.jpg", 
             description: "Resort-style facilities for residents"
         }
     ],
@@ -277,7 +277,7 @@ export const properties = [
             size: "273 sqft",
             bedrooms: "Studio",
             bathrooms: "1",
-            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-a-273sf.jpg"
+            image: "/images/properties/Grand-Damansara/floor-plans/type-a-273sf.jpg"
         },
         {
             id: "fp-2", 
@@ -285,7 +285,7 @@ export const properties = [
             size: "469 sqft",
             bedrooms: "1+1",
             bathrooms: "2",
-            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-b-469sf-dualkey.png"
+            image: "/images/properties/Grand-Damansara/floor-plans/type-b-469sf-dualkey.png"
         },
         {
             id: "fp-3",
@@ -293,7 +293,7 @@ export const properties = [
             size: "471 sqft", 
             bedrooms: "1",
             bathrooms: "1",
-            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-c-471sf.jpg"
+            image: "/images/properties/Grand-Damansara/floor-plans/type-c-471sf.jpg"
         },
         {
             id: "fp-4",
@@ -301,7 +301,7 @@ export const properties = [
             size: "686 sqft",
             bedrooms: "2",
             bathrooms: "2",
-            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-d-686sf.webp"
+            image: "/images/properties/Grand-Damansara/floor-plans/type-d-686sf.webp"
         },
         {
             id: "fp-5",
@@ -309,35 +309,35 @@ export const properties = [
             size: "916 sqft",
             bedrooms: "3",
             bathrooms: "2",
-            image: "/src/assets/images/properties/Grand-Damansara/floor-plans/type-e-916sf.webp"
+            image: "/images/properties/Grand-Damansara/floor-plans/type-e-916sf.webp"
         }
     ],
     interior: [
         {
             id: "int-1",
             name: "Living Room",
-            image: "/src/assets/images/properties/Grand-Damansara/interior/living-room.jpg",
+            image: "/images/properties/Grand-Damansara/interior/living-room.jpg",
             description: "Spacious and modern living room design"
         },
         {
             id: "int-2",
             name: "Studio with Bathroom",
-            image: "/src/assets/images/properties/Grand-Damansara/interior/studio-with-bathroom.jpg",
+            image: "/images/properties/Grand-Damansara/interior/studio-with-bathroom.jpg",
             description: "Efficient studio layout with attached bathroom"
         },
         {
             id: "int-3",
             name: "Studio Unit",
-            image: "/src/assets/images/properties/Grand-Damansara/interior/studio.jpg",
+            image: "/images/properties/Grand-Damansara/interior/studio.jpg",
             description: "Contemporary studio unit design"
         }
     ],
     location: {
-        image: "/src/assets/images/properties/Grand-Damansara/location/location.png",
+        image: "/images/properties/Grand-Damansara/location/location.png",
         description: "Strategic location in Petaling Jaya"
     },
     locationHighlight: {
-        image: "/src/assets/images/properties/Grand-Damansara/location/walkable-500m-to-lrt.jpg",
+        image: "/images/properties/Grand-Damansara/location/walkable-500m-to-lrt.jpg",
         description: "Just 500m walking distance to LRT station"
     },
     additionalInfo: {
@@ -365,7 +365,7 @@ export const properties = [
     monthlyRepayment: 2920, // 基于价格680000计算的大约月供
     completionDate: 2028,
     description: "Skyline Embassy is an exclusive residential enclave that redefines luxury living along Kuala Lumpur's prestigious Embassy Row, featuring three magnificent towers with meticulously crafted units and world-class facilities.",
-    preview: "/src/assets/images/properties/Skyline-Embassy/previews/preview.jpg",
+    preview: "/images/properties/Skyline-Embassy/previews/preview.jpg",
     features: [
         "Prime location near embassies and major landmarks",
         "High ceilings and spacious layouts",
@@ -376,25 +376,25 @@ export const properties = [
         {
             id: "fac-1",
             name: "Project Overview",
-            image: "/src/assets/images/properties/Skyline-Embassy/facilities/overview.png",
+            image: "/images/properties/Skyline-Embassy/facilities/overview.png",
             description: "Overall development perspective"
         },
         {
             id: "fac-2",
             name: "Rooftop Swimming Pool",
-            image: "/src/assets/images/properties/Skyline-Embassy/facilities/rooftop-swimming-pool.jpg",
+            image: "/images/properties/Skyline-Embassy/facilities/rooftop-swimming-pool.jpg",
             description: "Infinity pool with panoramic city views"
         },
         {
             id: "fac-3",
             name: "Sky Dining",
-            image: "/src/assets/images/properties/Skyline-Embassy/facilities/sky-dinning.jpg",
+            image: "/images/properties/Skyline-Embassy/facilities/sky-dinning.jpg",
             description: "Exclusive sky dining area for residents"
         },
         {
             id: "fac-4",
             name: "Theater Room",
-            image: "/src/assets/images/properties/Skyline-Embassy/facilities/theater-room.jpg",
+            image: "/images/properties/Skyline-Embassy/facilities/theater-room.jpg",
             description: "Private theater room for residents"
         }
     ],
@@ -405,7 +405,7 @@ export const properties = [
             size: "551 sqft",
             bedrooms: 1,
             bathrooms: 1,
-            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-a-551sf.png"
+            image: "/images/properties/Skyline-Embassy/floor-plans/type-a-551sf.png"
         },
         {
             id: "fp-2",
@@ -413,7 +413,7 @@ export const properties = [
             size: "710 sqft",
             bedrooms: 2,
             bathrooms: 2,
-            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-b-710sf.png"
+            image: "/images/properties/Skyline-Embassy/floor-plans/type-b-710sf.png"
         },
         {
             id: "fp-3",
@@ -421,7 +421,7 @@ export const properties = [
             size: "841 sqft",
             bedrooms: "2+1",
             bathrooms: 2,
-            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-c-841sf-dualkey.png"
+            image: "/images/properties/Skyline-Embassy/floor-plans/type-c-841sf-dualkey.png"
         },
         {
             id: "fp-4",
@@ -429,7 +429,7 @@ export const properties = [
             size: "853 sqft",
             bedrooms: 3,
             bathrooms: 2,
-            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-d-853sf.png"
+            image: "/images/properties/Skyline-Embassy/floor-plans/type-d-853sf.png"
         },
         {
             id: "fp-5",
@@ -437,37 +437,37 @@ export const properties = [
             size: "1005 sqft",
             bedrooms: 3,
             bathrooms: 2,
-            image: "/src/assets/images/properties/Skyline-Embassy/floor-plans/type-e-1005sf.png"
+            image: "/images/properties/Skyline-Embassy/floor-plans/type-e-1005sf.png"
         }
     ],
     interior: [
         {
             id: "int-1",
             name: "Dual Key Studio",
-            image: "/src/assets/images/properties/Skyline-Embassy/interior/dual-key-studio.png",
+            image: "/images/properties/Skyline-Embassy/interior/dual-key-studio.png",
             description: "Efficient dual key studio layout"
         },
         {
             id: "int-2",
             name: "Living Room",
-            image: "/src/assets/images/properties/Skyline-Embassy/interior/living-room.png",
+            image: "/images/properties/Skyline-Embassy/interior/living-room.png",
             description: "Spacious living room with modern design"
         },
         {
             id: "int-3",
             name: "Master Bathroom",
-            image: "/src/assets/images/properties/Skyline-Embassy/interior/master-bathroom.png",
+            image: "/images/properties/Skyline-Embassy/interior/master-bathroom.png",
             description: "Luxurious master bathroom"
         },
         {
             id: "int-4",
             name: "Master Room",
-            image: "/src/assets/images/properties/Skyline-Embassy/interior/master-room.png",
+            image: "/images/properties/Skyline-Embassy/interior/master-room.png",
             description: "Elegant master bedroom"
         }
     ],
     location: {
-        image: "/src/assets/images/properties/Skyline-Embassy/location/location.jpg",
+        image: "/images/properties/Skyline-Embassy/location/location.jpg",
         description: "Prime location in Kuala Lumpur's Embassy Row"
     },
     additionalInfo: {
@@ -495,7 +495,7 @@ export const properties = [
     monthlyRepayment: 1623, // 基于价格378000计算的大约月供
     completionDate: 2028,
     description: "M Azura offers a modern living experience with extensive amenities and excellent connectivity, designed for urban affordability.",
-    preview: "/src/assets/images/properties/M-Azura/previews/preview.jpg",
+    preview: "/images/properties/M-Azura/previews/preview.jpg",
     
     features: [
         "Strategic Location",
@@ -509,25 +509,25 @@ export const properties = [
         {
             id: "fac-1",
             name: "Garden",
-            image: "/src/assets/images/properties/M-Azura/facilities/garden.jpg",
+            image: "/images/properties/M-Azura/facilities/garden.jpg",
             description: "Landscaped garden for residents"
         },
         {
             id: "fac-2",
             name: "KL City View",
-            image: "/src/assets/images/properties/M-Azura/facilities/kl-city-view.jpg",
+            image: "/images/properties/M-Azura/facilities/kl-city-view.jpg",
             description: "Breathtaking view of Kuala Lumpur city"
         },
         {
             id: "fac-3",
             name: "Overview",
-            image: "/src/assets/images/properties/M-Azura/facilities/overview.jpg",
+            image: "/images/properties/M-Azura/facilities/overview.jpg",
             description: "Overall development perspective"
         },
         {
             id: "fac-4",
             name: "Swimming Pool",
-            image: "/src/assets/images/properties/M-Azura/facilities/swimming-pool.jpg",
+            image: "/images/properties/M-Azura/facilities/swimming-pool.jpg",
             description: "Luxury swimming pool with city view"
         }
     ],
@@ -539,7 +539,7 @@ export const properties = [
             size: "700 sqft",
             bedrooms: 2,
             bathrooms: 2,
-            image: "/src/assets/images/properties/M-Azura/floor-plans/type-a-700sf.jpg"
+            image: "/images/properties/M-Azura/floor-plans/type-a-700sf.jpg"
         },
         {
             id: "fp-2",
@@ -547,7 +547,7 @@ export const properties = [
             size: "850 sqft",
             bedrooms: 3,
             bathrooms: 2,
-            image: "/src/assets/images/properties/M-Azura/floor-plans/type-b-850sf.jpg"
+            image: "/images/properties/M-Azura/floor-plans/type-b-850sf.jpg"
         },
         {
             id: "fp-3",
@@ -555,7 +555,7 @@ export const properties = [
             size: "1000 sqft",
             bedrooms: 4,
             bathrooms: 3,
-            image: "/src/assets/images/properties/M-Azura/floor-plans/type-c-1000sf.jpg"
+            image: "/images/properties/M-Azura/floor-plans/type-c-1000sf.jpg"
         }
     ],
     
@@ -563,31 +563,31 @@ export const properties = [
         {
             id: "int-1",
             name: "Dining Area",
-            image: "/src/assets/images/properties/M-Azura/interior/dinning.jpg",
+            image: "/images/properties/M-Azura/interior/dinning.jpg",
             description: "Modern dining area design"
         },
         {
             id: "int-2",
             name: "Kitchen",
-            image: "/src/assets/images/properties/M-Azura/interior/kitchen.jpg",
+            image: "/images/properties/M-Azura/interior/kitchen.jpg",
             description: "Contemporary kitchen layout"
         },
         {
             id: "int-3",
             name: "Living Room",
-            image: "/src/assets/images/properties/M-Azura/interior/living.jpg",
+            image: "/images/properties/M-Azura/interior/living.jpg",
             description: "Spacious living area"
         },
         {
             id: "int-4",
             name: "Master Bedroom",
-            image: "/src/assets/images/properties/M-Azura/interior/master-room.jpg",
+            image: "/images/properties/M-Azura/interior/master-room.jpg",
             description: "Comfortable master bedroom"
         }
     ],
     
     location: { // 添加了 location 对象
-        image: "/src/assets/images/properties/M-Azura/location/location.png",
+        image: "/images/properties/M-Azura/location/location.png",
         description: "Strategic location in Setapak, Kuala Lumpur"
     },
     
