@@ -1,9 +1,9 @@
 // src/js/components/PropertyDetails.jsx
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { properties } from '../data/properties';
 import { Container, Section } from '../components/Layout';
-import { CheckIcon, MessageCircle, X } from 'lucide-react';
+import { MessageCircle, X, ArrowLeft } from 'lucide-react';
 
 // ImageModal Component
 const ImageModal = ({ image, alt, onClose }) => {
@@ -31,11 +31,16 @@ const ImageModal = ({ image, alt, onClose }) => {
 };
 
 const PropertyDetails = () => {
+  const navigate = useNavigate(); // 添加导航hook
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedImage, setSelectedImage] = useState(null);
   const { id } = useParams();
   
   const property = properties.find(p => p.id === parseInt(id));
+
+  const handleGoBack = () => {
+    navigate(-1);
+  }
 
   if (!property) {
     return (
@@ -109,6 +114,18 @@ const PropertyDetails = () => {
           </span>
         </div>
       </div>
+
+      {/* 添加返回按钮 */}
+      <div className="max-w-6xl mx-auto px-4">
+        <button
+          onClick={handleGoBack}
+          className="back-button group mt-6 mb-2"
+        >
+          <ArrowLeft className="back-button__icon" />
+          <span>Back to Listings</span>
+        </button>
+      </div>
+
 
       {selectedImage && (
         <ImageModal

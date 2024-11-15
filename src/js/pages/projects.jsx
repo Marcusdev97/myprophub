@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 import FilterSection from '../components/FilterSection';
 import { properties, filterProperties } from '../data/properties';
-import { Container, Section, Grid } from '../components/Layout';
+import { Container, Section } from '../components/Layout';
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
@@ -16,7 +16,6 @@ const ProjectsPage = () => {
     location: 'any',
   });
 
-  // 价格范围选项
   const priceRanges = listingType === 'rent' 
     ? [
         { value: 'any', label: 'Any Rental' },
@@ -65,7 +64,7 @@ const ProjectsPage = () => {
   }, [location.state]);
 
   const handlePropertyClick = (property) => {
-    navigate(`/properties/${property.id}`);
+    navigate(`/projects/${property.id}`);  // 修改这里的路由路径
   };
 
   const handleListingTypeChange = (type) => {
@@ -92,14 +91,15 @@ const ProjectsPage = () => {
   });
 
   return (
-<Section className="py-4 sm:py-6 md:py-10">
-    {/* 使用默认容器宽度约束过滤器部分 */}
-    <Container size="default" className="max-w-6xl">
-      {/* Header Section */}
-      <div className="flex flex-col items-center mb-6 sm:mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Property Listings</h1>
-        <p className="text-center text-gray-600 text-sm sm:text-base px-4 sm:px-0">{getSubtitleText()}</p>
-      </div>
+    <Section className="py-4 sm:py-6 md:py-10">
+      <Container size="default" className="max-w-6xl">
+        {/* Header Section */}
+        <div className="flex flex-col items-center mb-6 sm:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Projects</h1>
+          <p className="text-center text-gray-600 text-sm sm:text-base px-4 sm:px-0">
+            {getSubtitleText()}
+          </p>
+        </div>
 
         {/* Filters Section */}
         <div className="mb-6 sm:mb-8">
@@ -128,7 +128,7 @@ const ProjectsPage = () => {
                 Rent Property
               </button>
             </div>
-  
+
             {/* Secondary Toggle */}
             {listingType === 'sale' && (
               <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-center">
@@ -155,7 +155,7 @@ const ProjectsPage = () => {
               </div>
             )}
           </div>
-  
+
           {/* Filter Controls */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             <FilterSection
@@ -178,37 +178,79 @@ const ProjectsPage = () => {
             />
           </div>
         </div>
+      </Container>
+
+      {/* Properties Grid Section */}
+      {filteredProperties.length > 0 ? (
+        <Container size="fullWidth" className="max-w-[1800px]">
+          <div className="mx-auto px-4 md:px-8 lg:px-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
+              {filteredProperties.map(property => (
+                <PropertyCard
+                  key={property.id}
+                  property={property}
+                  onClick={() => handlePropertyClick(property)}
+                  className="w-full"
+                />
+              ))}
+            </div>
+          </div>
         </Container>
-  
-        {/* Properties Grid - 使用新的全宽容器 */}
-    {filteredProperties.length > 0 ? (
-      <Container size="fullWidth" className="max-w-[1800px]">
-        <div className="mx-auto px-4 md:px-8 lg:px-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
-            {filteredProperties.map(property => (
-              <PropertyCard
-                key={property.id}
-                property={property}
-                onClick={() => handlePropertyClick(property)}
-                className="w-full"
-              />
-            ))}
+      ) : (
+        <Container size="default" className="max-w-6xl">
+          <div className="flex justify-center px-4 sm:px-0">
+            <div className="bg-white shadow-sm rounded-xl p-6 md:p-8 max-w-2xl w-full">
+              {/* 主要信息 */}
+              <div className="text-center mb-6">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">
+                  Looking to {listingType === 'rent' ? 'Rent Out' : 'Sell'} Your Property?
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  {listingType === 'rent' 
+                    ? "Want to find quality tenants for your property? Let our professional team help you manage your rental listing."
+                    : "Ready to sell your property? Our experienced team can help you get the best value for your property."}
+                </p>
+              </div>
+
+              {/* 服务特点 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 text-primary mt-1">✓</div>
+                  <span className="text-gray-600">Professional Property Listing</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 text-primary mt-1">✓</div>
+                  <span className="text-gray-600">Market Analysis</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 text-primary mt-1">✓</div>
+                  <span className="text-gray-600">Dedicated Support Team</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 text-primary mt-1">✓</div>
+                  <span className="text-gray-600">Free Property Valuation</span>
+                </div>
+              </div>
+
+              {/* 行动按钮 */}
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <button
+                  onClick={() => navigate('/contact', { 
+                    state: { 
+                      service: listingType === 'rent' ? 'rent-out' : 'sell'
+                    }
+                  })}
+                  className="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg transition-colors"
+                >
+                  List Your Property
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </Container>
-    ) : (
-      <Container size="default" className="max-w-6xl">
-        <div className="flex justify-center px-4 sm:px-0">
-          <div className="text-center p-4 sm:p-6 bg-gray-50 rounded-lg max-w-lg w-full">
-            <p className="text-gray-600 text-sm sm:text-base">
-              No properties found matching your criteria. Please try adjusting your filters.
-            </p>
-          </div>
-        </div>
-      </Container>
-    )}
-  </Section>
+        </Container>
+      )}
+    </Section>
   );
-}
+};
 
 export default ProjectsPage;

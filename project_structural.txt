@@ -19,12 +19,14 @@
 │   │       └── properties
 │   │           ├── .DS_Store
 │   │           ├── Grand-Damansara
+│   │           │   ├── .DS_Store
 │   │           │   ├── facilities
 │   │           │   │   ├── hammock.webp
 │   │           │   │   ├── jacuzzi.webp
 │   │           │   │   ├── overall-swimming-pool.webp
 │   │           │   │   └── resort-facilities-design.jpg
 │   │           │   ├── floor-plans
+│   │           │   │   ├── .DS_Store
 │   │           │   │   ├── type-a-273sf.jpg
 │   │           │   │   ├── type-b-469sf-dualkey.png
 │   │           │   │   ├── type-c-471sf.jpg
@@ -38,13 +40,28 @@
 │   │           │   │   ├── location.png
 │   │           │   │   └── walkable-500m-to-lrt.jpg
 │   │           │   └── previews
+│   │           │       ├── .DS_Store
 │   │           │       └── previews.jpg
 │   │           ├── M-Azura
 │   │           │   ├── facilities
+│   │           │   │   ├── garden.jpg
+│   │           │   │   ├── kl-city-view.jpg
+│   │           │   │   ├── overview.jpg
+│   │           │   │   └── swimming-pool.jpg
 │   │           │   ├── floor-plans
+│   │           │   │   ├── type-a-700sf.jpg
+│   │           │   │   ├── type-b-850sf.jpg
+│   │           │   │   └── type-c-1000sf.jpg
 │   │           │   ├── interior
+│   │           │   │   ├── dinning.jpg
+│   │           │   │   ├── kitchen.jpg
+│   │           │   │   ├── living.jpg
+│   │           │   │   └── master-room.jpg
 │   │           │   ├── location
+│   │           │   │   └── location.png
 │   │           │   └── previews
+│   │           │       ├── WhatsApp Image 2024-10-15 at 15.40.08.jpeg
+│   │           │       └── preview.jpg
 │   │           ├── M-Terra
 │   │           │   ├── facilities
 │   │           │   │   ├── overview.jpg
@@ -86,6 +103,28 @@
 │   │           │   └── previews
 │   │           │       └── condo-preview.jpg
 │   │           └── Skyline-Embassy
+│   │               ├── .DS_Store
+│   │               ├── facilities
+│   │               │   ├── overview.png
+│   │               │   ├── rooftop-swimming-pool.jpg
+│   │               │   ├── sky-dinning.jpg
+│   │               │   └── theater-room.jpg
+│   │               ├── floor-plans
+│   │               │   ├── type-a-551sf.png
+│   │               │   ├── type-b-710sf.png
+│   │               │   ├── type-c-841sf-dualkey.png
+│   │               │   ├── type-d-853sf.png
+│   │               │   └── type-e-1005sf.png
+│   │               ├── interior
+│   │               │   ├── .DS_Store
+│   │               │   ├── dual-key-studio.png
+│   │               │   ├── living-room.png
+│   │               │   ├── master-bathroom.png
+│   │               │   └── master-room.png
+│   │               ├── location
+│   │               │   └── location.jpg
+│   │               └── previews
+│   │                   └── preview.jpg
 │   ├── index.css
 │   ├── js
 │   │   ├── .DS_Store
@@ -98,6 +137,7 @@
 │   │   │   ├── PropertyCard.jsx
 │   │   │   ├── PropertyDetails.jsx
 │   │   │   ├── ServiceCard.jsx
+│   │   │   ├── SuccessMessage.jsx
 │   │   │   ├── navigation.jsx
 │   │   │   └── slider.js
 │   │   ├── constants
@@ -111,7 +151,8 @@
 │   │   │   ├── projects.jsx
 │   │   │   └── services.jsx
 │   │   ├── services
-│   │   │   └── api.js
+│   │   │   ├── api.js
+│   │   │   └── emailService.js
 │   │   └── utils
 │   │       ├── animations.js
 │   │       └── helpers.js
@@ -157,5 +198,3 @@
 │           └── _services.scss
 ├── tailwind.config.js
 └── vite.config.js
-
-45 directories, 114 files

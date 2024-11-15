@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Phone, Mail, Globe, Clock, Send } from 'lucide-react';
 import { Container, Section } from '../components/Layout';
 import emailjs from '@emailjs/browser';
@@ -11,7 +12,17 @@ const EMAILJS_CONFIG = {
   PUBLIC_KEY: '7uF-2B6L1vWtfD5sy'
 };
 
+const SERVICES = [
+  { value: '', label: 'Select a service' },
+  { value: 'buy', label: 'Buy Property' },
+  { value: 'sell', label: 'List Property For Sale' },
+  { value: 'rent', label: 'Find Rental Property' },
+  { value: 'rent-out', label: 'List Property For Rent' },
+  { value: 'loan', label: 'Loan Service' }
+];
+
 const Contact = () => {
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,6 +32,30 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // 处理从其他页面传来的状态
+  useEffect(() => {
+    if (location.state?.service) {
+      setFormData(prev => ({ 
+        ...prev,
+        subject: location.state.service,
+        // 根据服务类型预设消息
+        message: getDefaultMessage(location.state.service)
+      }));
+    }
+  }, [location.state]);
+
+  // 根据服务类型获取默认消息
+  const getDefaultMessage = (service) => {
+    const messages = {
+      'sell': 'I would like to list my property for sale.',
+      'rent-out': 'I would like to list my property for rent.',
+      'buy': 'I am interested in buying a property.',
+      'rent': 'I am looking for a property to rent.',
+      'loan': 'I would like to know more about loan services.'
+    };
+    return messages[service] || '';
+  };
 
   // 初始化 EmailJS
   useEffect(() => {
@@ -65,19 +100,16 @@ const Contact = () => {
       });
 
     } catch (error) {
-      // 发送失败
       console.error('Email error:', error);
       
-      // 显示错误信息
       toast.error('Failed to send message. Please try WhatsApp instead.', {
-        id: loadingToast,
-        duration: 5000,
-        icon: '❌'
+        id: toastId,
+        duration: 5000
       });
 
-      // 可以自动打开 WhatsApp
+      // 3秒后自动打开 WhatsApp
       setTimeout(() => {
-        const whatsappURL = `https://wa.me/601133698121?text=Hi,%20I%20tried%20to%20send%20a%20message%20through%20your%20website%20but%20encountered%20an%20error.%20My%20name%20is%20${formData.name}`;
+        const whatsappURL = `https://wa.me/601133698121?text=Hi, I tried to send a message through your website but encountered an error. My name is ${formData.name}`;
         window.open(whatsappURL, '_blank');
       }, 3000);
     }
@@ -87,36 +119,39 @@ const Contact = () => {
 
   return (
     <Section className="py-4 sm:py-6 md:py-10">
-    <Toaster 
-      position="top-center"
-      toastOptions={{
-        success: {
-          style: {
-            background: '#10B981',
-            color: 'white',
+      <Toaster 
+        position="top-center"
+        toastOptions={{
+          success: {
+            style: {
+              background: '#10B981',
+              color: 'white',
+            },
           },
-        },
-        error: {
-          style: {
-            background: '#EF4444',
-            color: 'white',
+          error: {
+            style: {
+              background: '#EF4444',
+              color: 'white',
+            },
           },
-        },
-        loading: {
-          style: {
-            background: '#3B82F6',
-            color: 'white',
+          loading: {
+            style: {
+              background: '#3B82F6',
+              color: 'white',
+            },
           },
-        },
-      }}
-    />
+        }}
+      />
       <Container size="default" className="max-w-6xl">
         {/* Header Section */}
         <div className="flex flex-col items-center mb-6 sm:mb-8">
           <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Contact Us</h1>
           <p className="text-center text-gray-600 text-sm sm:text-base max-w-xl px-4 sm:px-0">
-            Looking for your dream property in Malaysia? Our professional property consultants 
-            are ready to assist you online with all your real estate needs.
+            {location.state?.service ? 
+              location.state.service.includes('sell') || location.state.service.includes('rent-out') ?
+                "Thank you for choosing us to list your property. Please provide your details below and our team will contact you shortly." :
+                "Looking for your dream property in Malaysia? Our professional property consultants are ready to assist you." :
+              "Looking for your dream property in Malaysia? Our professional property consultants are ready to assist you online with all your real estate needs."}
           </p>
         </div>
 
@@ -241,15 +276,19 @@ const Contact = () => {
                     id="subject"
                     required
                     value={formData.subject}
-                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                    onChange={(e) => setFormData({
+                      ...formData, 
+                      subject: e.target.value,
+                      message: getDefaultMessage(e.target.value)
+                    })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary"
                     disabled={isSubmitting}
                   >
-                    <option value="">Select a service</option>
-                    <option value="buy">Buy Property</option>
-                    <option value="sell">Sell Property</option>
-                    <option value="rent">Rent Property</option>
-                    <option value="loan">Loan Service</option>
+                    {SERVICES.map(service => (
+                      <option key={service.value} value={service.value}>
+                        {service.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -269,28 +308,28 @@ const Contact = () => {
                   disabled={isSubmitting}
                 />
               </div>
-                {/* 更新提交按钮 */}
-                <button 
+
+              <button 
                 type="submit" 
-                className={`submit-button w-full flex items-center justify-center gap-2 ${
+                className={`w-full flex items-center justify-center gap-2 ${
                   isSubmitting 
                     ? 'bg-gray-400 cursor-not-allowed' 
                     : 'bg-primary hover:bg-primary-dark'
                 } text-white py-3 px-6 rounded-lg transition-colors`}
                 disabled={isSubmitting}
-                >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
-                  <span>Sending...</span>
-                </>
-              ) : (
-                <>
-                  <Send size={20} />
-                  <span>Send Message</span>
-                </>
-              )}
-            </button>
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={20} />
+                    <span>Send Message</span>
+                  </>
+                )}
+              </button>
             </form>
           </div>
         </div>
