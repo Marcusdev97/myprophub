@@ -49,7 +49,7 @@ const PropertyCard = ({ property, onClick }) => {
         <div className="property-card__features">
           <div className="property-card__feature">
             <Bed size={18} />
-            <span>{bedrooms} Bedsssssss</span>
+            <span>{bedrooms} Beds</span>
           </div>
           <div className="property-card__feature">
             <Bath size={18} />

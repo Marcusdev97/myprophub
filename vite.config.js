@@ -20,10 +20,11 @@ export default defineConfig({
   },
 
   // Base URL configuration
-  base: process.env.NODE_ENV === 'production' 
-    ? 'https://myprophub.website/' 
-    : '/',
-    
+  // base: process.env.NODE_ENV === 'production' 
+  //   ? 'https://myprophub.website/' 
+  //   : '/',
+  base : '/',
+
   // 解析配置
   resolve: {
     alias: {
@@ -94,9 +95,13 @@ export default defineConfig({
     strictPort: true,
     open: true,
     cors: true,
-    middlewares: [    // 添加与server相同的中间件配置
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
+    middlewares: [
       (req, res, next) => {
-        if (req.url !== '/' && !req.url.includes('.')) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        if (!req.url.includes('.')) {
           req.url = '/';
         }
         next();

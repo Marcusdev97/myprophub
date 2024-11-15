@@ -1,6 +1,7 @@
 // src/js/components/PropertyDetails.jsx
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useSwipeable } from 'react-swipeable';
 import { properties } from '../data/properties';
 import { Container, Section } from '../components/Layout';
 import { MessageCircle, X, ArrowLeft } from 'lucide-react';
@@ -31,16 +32,46 @@ const ImageModal = ({ image, alt, onClose }) => {
 };
 
 const PropertyDetails = () => {
-  const navigate = useNavigate(); // 添加导航hook
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedImage, setSelectedImage] = useState(null);
   const { id } = useParams();
+  const [swipeProgress, setSwipeProgress] = useState(0);
   
   const property = properties.find(p => p.id === parseInt(id));
 
-  const handleGoBack = () => {
-    navigate(-1);
-  }
+  // 合并所有滑动处理逻辑到一个配置对象
+  const handlers = useSwipeable({
+    onSwiping: ({ deltaX }) => {
+      if (window.innerWidth <= 768) {
+        // 修改为右滑检测
+        const progress = Math.min(Math.max(deltaX / 200, 0), 1);  // deltaX 为正值时是右滑
+        setSwipeProgress(progress);
+        if ('vibrate' in navigator) {
+          navigator.vibrate(1);
+        }
+      }
+    },
+    // 改为监听右滑
+    onSwipedRight: () => {
+      if (window.innerWidth <= 768 && swipeProgress > 0.3) {
+        if ('vibrate' in navigator) {
+          navigator.vibrate(10);
+        }
+        // 明确指定返回路径
+        navigate('/projects', { replace: false });
+      }
+      setSwipeProgress(0);
+    },
+    onSwipeEnd: () => {
+      setSwipeProgress(0);
+    },
+    trackMouse: false,
+    preventDefaultTouchmoveEvent: true,
+    trackTouch: true,
+    delta: 30, // 降低阈值使滑动更灵敏
+    swipeDuration: 500
+  });
 
   if (!property) {
     return (
@@ -81,8 +112,17 @@ const PropertyDetails = () => {
   };
 
   return (
-    <div className="property-details-page">
-      {/* Fixed Enquiry Button */}
+      <div 
+        {...handlers}
+        className="property-details-page"
+        style={{
+          transform: `translateX(${swipeProgress * 100}px)`, // 移除负号，让右滑动画正确
+          opacity: 1 - swipeProgress * 0.3,
+          transition: swipeProgress === 0 ? 'all 0.3s ease' : 'none',
+          willChange: 'transform, opacity'
+        }}
+      >
+            {/* Fixed Enquiry Button */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50">
         <a 
           href={`https://wa.me/601133698121?text=I'm interested in ${name}`}
@@ -114,18 +154,6 @@ const PropertyDetails = () => {
           </span>
         </div>
       </div>
-
-      {/* 添加返回按钮 */}
-      <div className="max-w-6xl mx-auto px-4">
-        <button
-          onClick={handleGoBack}
-          className="back-button group mt-6 mb-2"
-        >
-          <ArrowLeft className="back-button__icon" />
-          <span>Back to Listings</span>
-        </button>
-      </div>
-
 
       {selectedImage && (
         <ImageModal

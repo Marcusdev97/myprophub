@@ -18,8 +18,9 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/properties/:id" element={<PropertyDetails />} />
+        <Route path="/projects/:id" element={<PropertyDetails />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<div>404 Not Found</div>} /> {/* 添加 404 路由 */}
       </Routes>
     </MainLayout>
   );

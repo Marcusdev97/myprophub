@@ -2,45 +2,32 @@
 
 .property-details {
 
-    .back-button {
+    @media (max-width: 768px) {
+      touch-action: pan-y pinch-zoom;
       position: relative;
-      display: inline-flex;
-      align-items: center;
-      padding: var(--spacing-2) 0; // 移除水平内边距使其更简洁
-      color: var(--color-text-light);
-      font-size: var(--font-size-sm);
-      font-weight: 500;
-      transition: all 0.2s ease;
+      min-height: 100vh;
+      background-color: white;
       
-      &:hover {
-        color: var(--color-primary);
-        
-        .back-button__icon {
-          transform: translateX(-4px);
-        }
-      }
-      
-      &__icon {
-        width: 18px;
-        height: 18px;
-        margin-right: var(--spacing-2);
-        transition: transform 0.2s ease;
-      }
-
-      // 添加下划线效果（可选）
-      &::after {
+      // 添加滑动提示阴影
+      &::before {
         content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 24px; // 图标宽度 + 一些间距
-        width: 0;
-        height: 1px;
-        background-color: var(--color-primary);
-        transition: width 0.2s ease;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.05) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
       }
 
-      &:hover::after {
-        width: calc(100% - 24px); // 减去图标的宽度
+      &:active::before {
+        opacity: 1;
       }
     }
 

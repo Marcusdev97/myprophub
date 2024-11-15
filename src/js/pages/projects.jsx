@@ -64,7 +64,7 @@ const ProjectsPage = () => {
   }, [location.state]);
 
   const handlePropertyClick = (property) => {
-    navigate(`/projects/${property.id}`);  // 修改这里的路由路径
+    navigate(`/projects/${property.id}`);
   };
 
   const handleListingTypeChange = (type) => {
