@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  
+
   // 开发服务器配置
   server: {
     port: 5173,
@@ -20,7 +20,7 @@ export default defineConfig({
   },
 
   // Base URL configuration
-  base: '/',
+  base: process.env.NODE_ENV === 'production' ? './' : '/',  // 根据环境设置base
 
   // 解析配置
   resolve: {
@@ -28,9 +28,6 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),  // 添加路径别名
     }
   },
-
-  // 静态资源配置
-  publicDir: 'public',
 
   // 构建配置
   build: {
@@ -50,9 +47,12 @@ export default defineConfig({
         // 优化块分割
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
+          // 其他大型依赖也可以分割
           ui: ['lucide-react', '@emailjs/browser']
         },
-        // 静态资源处理
+        // 控制文件名格式
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
           let extType = assetInfo.name.split('.')[1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
@@ -61,46 +61,29 @@ export default defineConfig({
             extType = 'fonts';
           }
           return `assets/${extType}/[name]-[hash][extname]`;
-        },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
+        }
       }
     },
-    // 性能优化
-    reportCompressedSize: false, // 提高大型项目构建性能
-    chunkSizeWarningLimit: 1000,
-    sourcemap: false, // 生产环境不生成 sourcemap
+    // 添加 chunk 大小警告限制
+    chunkSizeWarningLimit: 1000
   },
 
   // CSS 配置
   css: {
     preprocessorOptions: {
       scss: {
-        charset: false // 避免 CSS @charset 警告
+        // additionalData: @import "@/styles/abstracts/_variables.scss";,  // 全局导入变量
       }
     },
+    // CSS modules 配置
     modules: {
-      generateScopedName: '[name]__[local]___[hash:base64:5]'
-    },
-    // 生产环境下压缩 CSS
-    postcss: {
-      plugins: [
-        require('autoprefixer'),
-        require('cssnano')
-      ]
+      generateScopedName: '[name][local]_[hash:base64:5]'
     }
   },
 
-  // 依赖优化
+  // 优化配置
   optimizeDeps: {
-    include: [
-      'react', 
-      'react-dom', 
-      'react-router-dom', 
-      'lucide-react',
-      '@emailjs/browser'
-    ],
-    exclude: [], // 排除不需要预构建的依赖
+    include: ['react', 'react-dom', 'react-router-dom', 'lucide-react']
   },
 
   // 预览配置
@@ -109,22 +92,13 @@ export default defineConfig({
     strictPort: true,
     open: true,
     cors: true,
-    // 添加预览服务器中间件
-    middlewares: [
+    middlewares: [    // 添加与server相同的中间件配置
       (req, res, next) => {
-        // 处理客户端路由
         if (req.url !== '/' && !req.url.includes('.')) {
           req.url = '/';
         }
         next();
       }
     ]
-  },
-
-  // Esbuild 配置
-  esbuild: {
-    loader: 'jsx', // 允许导入 jsx 文件
-    include: /\.[jt]sx?$/, // 包含的文件
-    exclude: [], // 排除的文件
   }
 });
