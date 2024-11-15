@@ -20,8 +20,10 @@ export default defineConfig({
   },
 
   // Base URL configuration
-  base: process.env.NODE_ENV === 'production' ? './' : '/',  // 根据环境设置base
-
+  base: process.env.NODE_ENV === 'production' 
+    ? 'https://myprophub.website/' 
+    : '/',
+    
   // 解析配置
   resolve: {
     alias: {
