@@ -30,8 +30,23 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|api/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1",
+      "continue": true
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 200
     }
   ]
 }
