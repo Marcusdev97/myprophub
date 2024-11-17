@@ -9,9 +9,11 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
-    middlewares: [
+    host: true, // 添加这个以支持网络访问
+    middleware: [
       (req, res, next) => {
-        if (req.url !== '/' && !req.url.includes('.')) {
+        // 简化路由处理
+        if (!req.url.match(/\.\w+$/)) {
           req.url = '/';
         }
         next();
@@ -19,16 +21,13 @@ export default defineConfig({
     ]
   },
 
-  // Base URL configuration
-  // base: process.env.NODE_ENV === 'production' 
-  //   ? 'https://myprophub.website/' 
-  //   : '/',
-  base : '/',
+  // 基础 URL 配置
+  base: '/',
 
   // 解析配置
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),  // 添加路径别名
+      '@': resolve(__dirname, './src'),
     }
   },
 
@@ -37,75 +36,103 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     copyPublicDir: true,
-    // 添加构建优化
     minify: 'terser',
+    sourcemap: false, // 生产环境不生成 sourcemap
     terserOptions: {
       compress: {
-        drop_console: true,  // 移除 console
-        drop_debugger: true  // 移除 debugger
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log']
       }
     },
     rollupOptions: {
       output: {
-        // 优化块分割
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          // 其他大型依赖也可以分割
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
           ui: ['lucide-react', '@emailjs/browser']
         },
-        // 控制文件名格式
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
+        chunkFileNames: 'assets/js/[name].[hash].js',
+        entryFileNames: 'assets/js/[name].[hash].js',
         assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name.split('.')[1];
+          const info = assetInfo.name.split('.');
+          const extType = info[info.length - 1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            extType = 'img';
-          } else if (/woff|woff2|eot|ttf|otf/i.test(extType)) {
-            extType = 'fonts';
+            return `assets/images/[name].[hash][extname]`;
           }
-          return `assets/${extType}/[name]-[hash][extname]`;
+          if (/woff2?|eot|ttf|otf/i.test(extType)) {
+            return `assets/fonts/[name].[hash][extname]`;
+          }
+          if (/css|scss/i.test(extType)) {
+            return `assets/css/[name].[hash][extname]`;
+          }
+          return `assets/[ext]/[name].[hash][extname]`;
         }
+      },
+      input: {
+        main: resolve(__dirname, 'index.html')
       }
     },
-    // 添加 chunk 大小警告限制
-    chunkSizeWarningLimit: 1000
+    chunkSizeWarningLimit: 1500,
+    emptyOutDir: true
   },
 
   // CSS 配置
   css: {
+    devSourcemap: true, // 开发环境启用 sourcemap
     preprocessorOptions: {
       scss: {
-        // additionalData: @import "@/styles/abstracts/_variables.scss";,  // 全局导入变量
+        charset: false,
+        additionalData: `@use "@/styles/abstracts" as *;`
       }
     },
-    // CSS modules 配置
     modules: {
-      generateScopedName: '[name][local]_[hash:base64:5]'
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+      localsConvention: 'camelCase'
     }
   },
 
-  // 优化配置
+  // 依赖优化
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'lucide-react']
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'lucide-react',
+      '@emailjs/browser'
+    ],
+    exclude: ['@vercel/analytics']
   },
 
   // 预览配置
   preview: {
     port: 4173,
     strictPort: true,
-    open: true,
+    host: true,
     cors: true,
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
     },
-    middlewares: [
-      (req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        if (!req.url.includes('.')) {
-          req.url = '/';
-        }
-        next();
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
-    ]
+    }
+  },
+
+  // 实验性功能
+  experimental: {
+    renderBuiltUrl: (filename, { hostType }) => {
+      if (hostType === 'js') {
+        return {
+          runtime: `window.__assetsPath + ${JSON.stringify(filename)}`
+        }
+      }
+      return filename
+    }
   }
 });
